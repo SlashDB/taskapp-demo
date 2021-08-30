@@ -6,7 +6,7 @@ import auth from './sdk/auth';
 
 export default function ListApp(props) {
   const [lists, getList, postList, putList, deleteList] = useDataDiscovery(
-    'taskdatadb',
+    process.env.REACT_APP_DATABASE_NAME,
     ['TaskList']
   );
 

@@ -4,7 +4,10 @@ import auth from './sdk/auth';
 import { useSetUp } from './sdk/hooks';
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
+
+  //redundent call - in case user did not call useSetUp at top level of project
   useSetUp();
+  
   return (
     <Route
       {...rest}

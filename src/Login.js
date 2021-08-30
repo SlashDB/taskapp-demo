@@ -5,10 +5,15 @@ import { useSetUp } from './sdk/hooks';
 import auth from './sdk/auth';
 
 export default function Login(props) {
+  //redundent call - in case user did not call useSetUp at top level of project
   useSetUp();
 
-  const [username, setUsername] = useState('taskapp');
-  const [password, setPassword] = useState('wwv7nppvsj147rhdbi5mnm1zm8risb53');
+  const [username, setUsername] = useState(
+    process.env.REACT_APP_DATABASE_USERNAME
+  );
+  const [password, setPassword] = useState(
+    process.env.REACT_APP_DATABASE_PASSWORD
+  );
 
   function validateForm() {
     return username.length > 0 && password.length > 0;

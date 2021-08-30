@@ -13,6 +13,7 @@ export const useDataDiscovery = (
   defaultFilterParameters,
   queryStrParameters
 ) => {
+  //redundent call - in case user did not call useSetUp at top level of project
   useSetUp();
 
   const isMountedRef = useRef(null);
@@ -102,6 +103,7 @@ export const useExecuteQuery = (
   defParameters,
   defQueryStrParameters
 ) => {
+  //redundent call - in case user did not call useSetUp at top level of project
   useSetUp();
 
   const isMountedRef = useRef(null);
