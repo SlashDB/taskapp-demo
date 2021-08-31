@@ -25,10 +25,7 @@ class Auth {
 
   async isAuthenticated() {
     var state;
-
     state = await slashDB.isAuthenticated();
-
-    console.log(state);
     return state;
   }
 

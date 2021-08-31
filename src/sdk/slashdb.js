@@ -22,19 +22,19 @@ export const slashDB = {
   setIsAuthenticated,
 };
 
-//declare local variables
+//Declare local variables. Will serve to hold vital set up info provided by user.
 let baseUrl = '';
 let dataFormat = ``;
 let apiKeyValue = ``;
 
-//set initial value for authentication
+//set initial value for isAuthenticatedVar. Used to check if user session is valid.
 let isAuthenticatedVar = false;
 
 /**
  * Set internal variables values for server connection.
  *
  * @param {String} baseUrlPath - Root path of slashdb server. Example http://localhost:8000.
- * @param {Object} setUpOptions - Setup options for use and connection to slashdb server.
+ * @param {Object} setUpOptions - Setup options for use and connection to slashdb server. Key value format.
  * @param {String} setUpOptions.dataFormatExt - Format of data. Json, XML, CSV, HTML, XSD.
  * @param {String} setUpOptions.apikey - API key for authentication purposes.
  */
@@ -48,7 +48,8 @@ function setUp(baseUrlPath, setUpOptions) {
 }
 
 /**
- * Login via username and password - Cookie Session authentication.
+ * Login via username and password - Cookie Session authentication. Perform POST request to slashdb/login and based on response
+ * validate or reject session. Set or delete cookie.
  * Send POST request with login: username, password: password as payload.
  *
  * @param {String} username - Username of user.
@@ -91,6 +92,8 @@ async function authenticateCookieSessionLogout() {
 
 /**
  * Check if session is valid. Check if user is still logged in.
+ * Set inernal variable isAuthenticatedVar to true of false based on response.
+ * @return {boolean} getIsAuthenticated()
  */
 async function isAuthenticated() {
   const localUser = getCookie('user_id');
@@ -109,7 +112,7 @@ async function isAuthenticated() {
 /**
  * Returns value of isAuthenticatedVar.
  *
- * @return {boolean} isAuthenticatedVar.
+ * @return {boolean} isAuthenticatedVar. True or False.
  */
 function getIsAuthenticated() {
   return isAuthenticatedVar;
@@ -222,7 +225,8 @@ async function post(urlPath, body, queryStrParameters, headers) {
  * @param {Object} body - payload to be send. Object of key value pairs.
  * @param {String} queryStrParameters - params to be send via url.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
- * @returns {Object} data - response payload
+ * @returns {Object}
+ * @param  data - response payload
  */
 async function put(urlPath, body, queryStrParameters, headers) {
   const [data, res] = await raw(
@@ -295,7 +299,7 @@ async function executeQuery(
       return await get(queryUrlParametersStr, queryStrParameters, headers);
   }
 }
-//Function to utalize data discovery
+//Function to utalize data discovery feature of SlashDB. Basicly GET, POST, PUT or DELETE interaction with remote database.
 /**
  *
  * @param {String} httpMethod - HTTP Method to be used in in the http request send.
@@ -310,7 +314,7 @@ async function dataDiscovery(
   httpMethod,
   database,
   parameters,
-  queryStrParameters = {},
+  queryStrParameters,
   body = undefined,
   headers
 ) {
@@ -353,8 +357,14 @@ async function dataDiscovery(
       );
   }
 }
+
 //helper functions
-//handles the requests responce
+
+/** Helper function to handle requests responce
+ *
+ * @param {*} response
+ * @returns {Object} data
+ */
 async function handleResponse(response) {
   return await response.text().then((text) => {
     const data = text && JSON.parse(text);
@@ -367,7 +377,13 @@ async function handleResponse(response) {
     return data;
   });
 }
-//help construct url path from array for data discovery
+
+/**
+ * Help construct url path from array for data discovery.
+ *
+ * @param {array} queryParamsArr Array of path params.
+ * @return {String} String format of params for url passing eg. /arra[0]/array[1].../array[n]
+ */
 function dataDiscoveryParamsConstructor(queryParamsArr) {
   let pathStr = '';
   if (queryParamsArr) {
@@ -377,7 +393,14 @@ function dataDiscoveryParamsConstructor(queryParamsArr) {
   }
   return pathStr;
 }
-//help construct string url path from object for ease of use
+
+/**
+ * Help construct string url path from object for query params. Any params that are required by query to execute.
+ * Such as if query requires TaskListId to execute - receive TaskListId: 1 - return /TaskListId/1
+ *
+ * @param {obj} queryParamsObj Object of key and value pairs.
+ * @return {String} String format of params for url passing eg. /key(0)/value[key(0)].../key(n)/value[key(n)].
+ */
 function queryParamsConstructor(queryParamsObj) {
   let pathStr = '';
   Object.keys(queryParamsObj).forEach(function eachKey(key) {
@@ -385,7 +408,12 @@ function queryParamsConstructor(queryParamsObj) {
   });
   return pathStr;
 }
-//help construct string options for url
+/**
+ * Help construct string url path from object for query options params.  Such as limit # of rows, offset # of rows eg. ?limit=23
+ *
+ * @param {obj} queryParamsObj Object of key and value pairs.
+ * @return {String} String format of params for url passing eg. ?key(0)=value[key(0)]&...key(n)=value[key(n)]&.
+ */
 function queryStrParamsConstructor(queryStrParamsObj) {
   let queryStrParams = '?';
   Object.keys(queryStrParamsObj).forEach(function eachKey(key) {

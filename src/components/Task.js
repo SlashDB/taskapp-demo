@@ -46,7 +46,7 @@ const Task = (props) => {
         fieldValue={task.Task}
         update={putTask}
         location={location}
-        get={getTasks}
+        //get={getTasks}
       ></Name>
       <div
         style={{
