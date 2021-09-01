@@ -15,7 +15,7 @@ ReactDOM.render(
       baseUrl={process.env.REACT_APP_SLASHDB_SERVER_URL}
       setUpOptions={{
         dataFormatExt: 'json',
-        apikey: process.env.REACT_APP_USER_API_KEY,
+        apiKey: process.env.REACT_APP_USER_API_KEY,
       }}
     >
       <App />

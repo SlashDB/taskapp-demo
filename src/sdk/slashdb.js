@@ -1,12 +1,12 @@
 /**
- * Vanila Javascript methods for use of Slashdb in javascript based project.
+ * Vanilla Javascript methods for use of Slashdb in javascript based project.
  * Also serves as under the hood methods for React specific functionality.
  */
 
-//import cookie handling functionality from cookies.js
+//Import cookie handling functionality from cookies.js
 import { setCookie, getCookie, delete_cookie } from './cookies';
 
-//export all exposed functions
+//Export all exposed methods.
 export const slashDB = {
   setUp,
   get,
@@ -27,14 +27,15 @@ let baseUrl = '';
 let dataFormat = ``;
 let apiKeyValue = ``;
 
-//set initial value for isAuthenticatedVar. Used to check if user session is valid.
+//Set initial value for isAuthenticatedVar. Used to check if user session is valid.
 let isAuthenticatedVar = false;
 
 /**
- * Set internal variables values for server connection.
+ * Set internal variables values for server connection. Once set, incoming options will be used for future interaction
+ * with SlashDB. Options include server url, dataformat of response and API key to be used for validation.
  *
  * @param {String} baseUrlPath - Root path of slashdb server. Example http://localhost:8000.
- * @param {Object} setUpOptions - Setup options for use and connection to slashdb server. Key value format.
+ * @param {Object} setUpOptions - Setup options for use and connection to SlashDB server. Key value format.
  * @param {String} setUpOptions.dataFormatExt - Format of data. Json, XML, CSV, HTML, XSD.
  * @param {String} setUpOptions.apikey - API key for authentication purposes.
  */
@@ -43,7 +44,7 @@ function setUp(baseUrlPath, setUpOptions) {
   if (setUpOptions) {
     setUpOptions.dataFormatExt &&
       (dataFormat = `.${setUpOptions.dataFormatExt}`);
-    setUpOptions.apikey && (apiKeyValue = `${setUpOptions.apikey}`);
+    setUpOptions.apiKey && (apiKeyValue = `${setUpOptions.apiKey}`);
   }
 }
 
@@ -53,7 +54,7 @@ function setUp(baseUrlPath, setUpOptions) {
  * Send POST request with login: username, password: password as payload.
  *
  * @param {String} username - Username of user.
- * @param {String} password - password of user.
+ * @param {String} password - Password of user.
  */
 async function authenticateCookieSessionLogin(username, password) {
   const temp = dataFormat;
@@ -75,7 +76,7 @@ async function authenticateCookieSessionLogin(username, password) {
 }
 
 /**
- * Send request to log out user. Delete cookie.
+ * Send request to logout user. Delete cookie.
  *
  */
 async function authenticateCookieSessionLogout() {
@@ -92,7 +93,8 @@ async function authenticateCookieSessionLogout() {
 
 /**
  * Check if session is valid. Check if user is still logged in.
- * Set inernal variable isAuthenticatedVar to true of false based on response.
+ * Set internal variable isAuthenticatedVar to true or false based on response.
+ *
  * @return {boolean} getIsAuthenticated()
  */
 async function isAuthenticated() {
@@ -127,16 +129,17 @@ function setIsAuthenticated(x) {
   isAuthenticatedVar = x;
 }
 
-/** Internal method for handling HTTP requests
+/**
+ * Internal method for handling HTTP requests.
  *
  * @param {String} httpMethod - HTTP Method to be used in in the http request send.
  * @param {String} urlPath - Url path to be added to base url path provided in SetUp where request will be made.
- * @param {Object} body - payload to be send. Object of key value pairs.
- * @param {Object} queryStrParams - params to be send via url.
+ * @param {Object} body - Payload to be sent. Object of key value pairs.
+ * @param {Object} queryStrParams - Params to be sent via url.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
  * @param {Boolean} onlyRes - Only response needed or expecting incoming payload.
- * @returns {Boolea} returnObj.data -response payload
- * @returns {Object} returnObj.res -response
+ * @returns {Boolea} returnObj.data -response payload.
+ * @returns {Object} returnObj.res -response.
  */
 async function raw(
   httpMethod,
@@ -186,9 +189,9 @@ async function raw(
 /** Internal method for handling HTTP GET requests
  *
  * @param {String} urlPath - Url path to be added to base url path provided in SetUp where request will be made.
- * @param {String} queryStrParameters - params to be send via url.
+ * @param {String} queryStrParameters - Params to be sent via url.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
- * @returns {Object} data - response payload
+ * @returns {Object} Data - response payload.
  */
 async function get(urlPath, queryStrParameters, headers) {
   const [data, res] = await raw(
@@ -204,10 +207,10 @@ async function get(urlPath, queryStrParameters, headers) {
 /** Internal method for handling HTTP POST requests
  *
  * @param {String} urlPath - Url path to be added to base url path provided in SetUp where request will be made.
- * @param {Object} body - payload to be send. Object of key value pairs.
- * @param {String} queryStrParameters - params to be send via url.
+ * @param {Object} body - Payload to be sent. Object of key value pairs.
+ * @param {String} queryStrParameters - Params to be sent via url.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
- * @returns {Object} data - response payload
+ * @returns {Object} Data - response payload.
  */
 async function post(urlPath, body, queryStrParameters, headers) {
   const [data, res] = await raw(
@@ -219,14 +222,14 @@ async function post(urlPath, body, queryStrParameters, headers) {
   );
   return data;
 }
-/** Internal method for handling HTTP POST requests
+/** Internal method for handling HTTP PUT requests
  *
  * @param {String} urlPath - Url path to be added to base url path provided in SetUp where request will be made.
- * @param {Object} body - payload to be send. Object of key value pairs.
- * @param {String} queryStrParameters - params to be send via url.
+ * @param {Object} body - Payload to be sent. Object of key value pairs.
+ * @param {String} queryStrParameters - Params to be sent via url.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
  * @returns {Object}
- * @param  data - response payload
+ * @param  data - Response payload.
  */
 async function put(urlPath, body, queryStrParameters, headers) {
   const [data, res] = await raw(
@@ -238,12 +241,12 @@ async function put(urlPath, body, queryStrParameters, headers) {
   );
   return data;
 }
-/** Internal method for handling HTTP POST requests
+/** Internal method for handling HTTP DELETE requests
  *
  * @param {String} urlPath - Url path to be added to base url path provided in SetUp where request will be made.
- * @param {String} queryStrParameters - params to be send via url.
+ * @param {String} queryStrParameters - Params to be sent via url.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
- * @returns {Object} data - response payload
+ * @returns {Object} Data - response payload.
  */
 async function _delete(urlPath, queryStrParameters, headers) {
   const [data, res] = await raw(
@@ -256,14 +259,15 @@ async function _delete(urlPath, queryStrParameters, headers) {
   return data;
 }
 
-/** Method to utalize SQLpassthrough - for executing a query
+/** Method utilizing SQLpassthrough functionality of SlashDB API - for executing a query.
  *
- * @param {String} httpMethod - HTTP Method to be used in in the http request send.
- * @param {String} queryID - Name of as is in SlashDB interface.
- * @param {Object} parameters - params to be send via url.
+ * @param {String} httpMethod - HTTP Method to be used in the http request send.
+ * @param {String} queryID - Name of query as is in SlashDB interface.
+ * @param {Object} parameters - Params to be send via url.
  * @param {Object} queryStrParameters - Specific params to be passed in url string for query in object as key value pair format.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
- * @returns
+ * @returns {Promise} Promise object represents response from server after performing a request of type set by httpMethod param
+ * - Prototype, PromiseState, PromiseResult
  */
 async function executeQuery(
   httpMethod,
@@ -299,16 +303,17 @@ async function executeQuery(
       return await get(queryUrlParametersStr, queryStrParameters, headers);
   }
 }
-//Function to utalize data discovery feature of SlashDB. Basicly GET, POST, PUT or DELETE interaction with remote database.
 /**
+ * Method to utilize data discovery feature of SlashDB API. Basicly GET, POST, PUT or DELETE interaction with remote database.
  *
- * @param {String} httpMethod - HTTP Method to be used in in the http request send.
- * @param {String} database - Name of database to be accessed
- * @param {Object} parameters - params to be send via url.
+ * @param {String} httpMethod - HTTP Method to be used in the http request send.
+ * @param {String} database - Name of database to be accessed.
+ * @param {Object} parameters - Params to be send via url.
  * @param {*} queryStrParameters
- * @param {Object} body - payload to be send. Object of key value pairs.
+ * @param {Object} body - Payload to be sent. Object of key value pairs.
  * @param {Object} headers - Header params to be included. Object of key value pairs.
- * @returns
+ * @returns {Promise} Promise object represents response from server after performing a request of type set by httpMethod param
+ * - Prototype, PromiseState, PromiseResult
  */
 async function dataDiscovery(
   httpMethod,
@@ -358,9 +363,7 @@ async function dataDiscovery(
   }
 }
 
-//helper functions
-
-/** Helper function to handle requests responce
+/** Helper function to handle requests response.
  *
  * @param {*} response
  * @returns {Object} data

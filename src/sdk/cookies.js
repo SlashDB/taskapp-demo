@@ -1,7 +1,8 @@
 /**
+ * Set cookie with params based on passed values to function. Main use in SDK for storing username for auth needs.
  *
- * @param {String} cname Name of cookie
- * @param {String} cvalue Value of cookie
+ * @param {String} cname Name of cookie.
+ * @param {String} cvalue Value of cookie.
  */
 export const setCookie = (cname, cvalue) => {
   var cookieExpires = new Date();
@@ -10,10 +11,10 @@ export const setCookie = (cname, cvalue) => {
 };
 
 /**
- * Look at cookie with name matching cname param and get its value
+ * Look at cookie with name matching, cname param and get its value.
  *
  * @param {String} cname Name of cookie
- * @return {String}  value of cookie with name matching inncoming param cname
+ * @return {String}  Value of cookie with name matching inncoming param cname.
  */
 export function getCookie(cname) {
   var name = cname + '=';
@@ -32,9 +33,9 @@ export function getCookie(cname) {
 }
 
 /**
- * Delete cookie with name matching cname param
+ * Delete cookie with name matching cname param.
  * 
- * @param {String} cname Name of cookie
+ * @param {String} cname Name of cookie.
  */
 export function delete_cookie(cname) {
   document.cookie = cname + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';

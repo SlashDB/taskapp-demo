@@ -30,7 +30,7 @@ Sqlite is a simple relational database management system. While SlashDB supports
 
 ### Database
 
-The database used for this app is a sqlite database named taskdatadb. It consists of two tables: TaskList(TaskListId (PK), Name) and TaskItem(TaskitemId (PK), Task, Checked, TaskListId (FK)). A list may contain any number of tasks or none. If a task exists it must be associated with one and only one list.  
+The database used for this app is a sqlite database named taskdatadb. It consists of two tables: TaskList(TaskListId (PK), Name) and TaskItem(TaskitemId (PK), Task, Checked, TaskListId (FK)). A list may contain any number of tasks or none. If a task exists it must be associated with one and only one list.
 
 ![UML Diagram](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/UML_Diagram.jpg 'UML Diagram')
 
@@ -38,18 +38,54 @@ The database used for this app is a sqlite database named taskdatadb. It consist
 
 ### How to run app in local environment with connection to remote SlashDB demo server
 
-    - Pull repo to your local environment via preferred method
-        - Use "https://github.com/SlashDB/slashdb-react-sdk.git" in preferred local directory
-        or
-        - Download zip and unzip in preferred local directory
-    - Open a terminal and navigate to where the repo resides on your local system.
+    1.  Pull repo to your local environment via preferred method. Use "git clone https://github.com/SlashDB/slashdb-react-sdk.git"
+        in preferred local directory or Download zip and unzip in preferred local directory.
+
+    2.  Open a terminal and navigate to where the repo resides on your local system.
+
         Run commands:
         **If you do not have NodeJS on your system get it from here - "https://nodejs.org/en/"**
-        - "npm install" - to pull all dependencies
-        - "npm start" - to spin up the app
-        - use a browser to visit - "http://localhost:3000/"
+
+        "npm install" - to pull all dependencies
+        "npm start" - to spin up the app
+
+        Use a browser to visit - "http://localhost:3000/"
 
 ### How to run app in local environment with connection to a local SlashDB server
+
+#### Pull demo app repo
+
+    1.  Pull repo to your local environment via preferred method. Use "git clone https://github.com/SlashDB/slashdb-react-sdk.git"
+        in preferred local directory or Download zip and unzip in preferred local directory.
+
+    2.  Open a terminal and navigate to where the repo resides on your local system.
+
+        Run commands:
+        **If you do not have NodeJS on your system get it from here - "https://nodejs.org/en/"**
+
+        "npm install" - to pull all dependencies
+
+#### Set up local server of SlashDB with Docker
+
+    1.  First download the SlashDB docker image provided by our team from Docker Hub. Input the following:
+
+        docker pull slashdb/slashdb
+
+    2. Check if the image is present in your local repo by (image id may differ):
+
+        docker images
+        REPOSITORY      TAG         IMAGE ID        CREATED             SIZE
+        slashdb         latest      edfc56915a4c    About an hour ago   1.237 GB
+
+    3. Unzip the default SlashDB configuration files:
+
+        wget -c https://downloads.slashdb.com/latest/default-slashdb-configs.zip
+
+        unzip default-slashdb-configs.zip
+
+        ![Unzip_slashdb](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/unzip_slashdb.jpg 'Login Screen')
+
+    4. Copy the files from the demo app repo found in folder "data" into the
 
 ## SDK Exposed Functionality
 
