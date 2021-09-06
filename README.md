@@ -243,21 +243,21 @@ The first const this hook maps to is the data returned from the initial get requ
       ))}
 
 **get** - getList
-This fuction allows us to fetch data from the SlashDB server (previously defined in the set-up stage with the help of SlashDBProvider), the database (previously defined in the initial call of the custom hook useDataDiscovery) and whatever other params we provide to specify the resource we want to retreive. Be careful when using this method as it will update the value of the **data**. As this is part of the custom hook functionality for abstracting state management within ReactJS projects when we call this method what will happen in the backgound is a fetch request will be made to the desired end point if we do not provide any params we will fetch and replace the value held in the **data** part of the hook. In other word let's say we made the call as shown above for **useDataDiscovery** now our lists constant holds an array with some data if we call **getList();** we will simply update the value but still be accessing the same endpoint (this may be useful when the same data is accessed from more than one source and data neededs to be refreshed periodicaly without any other manipulation on the data). However if you are using the data or in this example's case lists and all of a suden you give it a new value bad things will happen. If you need to drill down the database either use **useDataDiscovery** with new params and set up second (or as many as you need) instances or drill down the manyally the same way you would any other array or object.  
+This fuction allows us to fetch data from the SlashDB server (previously defined in the set-up stage with the help of SlashDBProvider), the database (previously defined in the initial call of the custom hook useDataDiscovery) and whatever other params we provide to specify the resource we want to retreive. Be careful when using this method as it will update the value of the **data**. As this is part of the custom hook functionality for abstracting state management within ReactJS projects when we call this method what will happen in the backgound is a fetch request will be made to the desired end point if we do not provide any params we will fetch and replace the value held in the **data** part of the hook. In other word let's say we made the call as shown above for **useDataDiscovery** now our lists constant holds an array with some data if we call **getList();** we will simply update the value but still be accessing the same endpoint (this may be useful when the same data is accessed from more than one source and data needs to be refreshed periodically without any other manipulation on the data). However, if you are using the data or in this example's case **lists** and all of a sudden you give it a new value, bad things will happen. If you need to drill down the database either use **useDataDiscovery** with new params and set up second (or as many as you need) instances or drill down manually - the same way you would any other array or object.  
         
         getList(['TaskList', 'TaskListId', `${TaskListId}`]);
         or
         getList();
         
 **post** - postList
-Used for adding new data to the database we are interacting with. As with other functions we have seen so far from the **useDataDiscovery** we will provide first a array with the path to the resource we wish to access. In this case the resource array only refers to the table to be added to. Second we will provide a object with key value pairs to be inserted in the table as a new entry. For spesifics on the object key value pairs refer to your database. in our case IDs are generated automaticly based on index so the only valuer we need to provide for this entry is the name.    
+Used for adding new data to the database we are interacting with. As with other functions we have seen so far from the **useDataDiscovery** we will provide first an array with the path to the resource we wish to access. In this case the resource array only refers to the table to be added to. Second we will provide an object with key value pairs to be inserted in the table as a new entry. For specifics on the object key value pairs refer to your database. In our case, IDs are generated automatically based on index so the only value we need to provide for this entry is the name.    
 
         postLists(['TaskList'], {
                 Name: listName ? listName : 'New List',
         })
 
 **put** - putList
-As wsimular to the **post** functionality but here we only update a value of an existing entry. So the fisrt param needs to point to the actual entry not just the table it is in. The secound param is just as with the previous function an object with the key value pairs we wish to update.    
+As similar to the **post** functionality but here we only update a value of an existing entry. So the fisrt param needs to point to the actual entry not just the table it is in. The secound param is just as with the previous function an object with the key value pairs we wish to update.    
 
         await update(['TaskList', 'TaskListId', `${TaskListId}`], { [fieldName]: `${fieldValue}` });
 
@@ -280,7 +280,7 @@ All functions **get**, **post**, **put** and **delete** also fetch the value of 
         );
 
 **data** - queryData
-The data returned by the query after execution. Array with objects. We access the array possition and the value of the key we wish to use. In this case the query is pretty simple but allot more complex queries are possible. For your convinience please find below the query code, as well.
+The data returned by the query after execution. Array with objects. We access the array position and the value of the key we wish to use. In this case the query is pretty simple but a lot more complex queries are possible. For your convenience please find below the query code, as well.
 
         <p>Completed tasks {queryData[0].Percentage} %</p>
         
