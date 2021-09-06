@@ -8,10 +8,14 @@ This repository contains a task list keeping app which shows how to use SlashDB 
 
 The SDK can be abstractly broken up into two parts one dedicated to functionality soley requiring the use of Javascript and one geared towards ReactJS based projects. The SDK exposes methods which allow set up of connection to a database via SlashDB as midware, basic authentication with the use of an API key, username and password as well retrieving, and committing data to said database. Custom hooks accomplishing the above listed functionality are also included. This part of the SDK caters to ReactJS projects and abstracts some of the state management.
 
-If you simply wish to use the SDK part of the project, please follow the link to this repo "insert link here". From there you can use import statements in your project to access the exposed methods found in the sdk. If you wish to run the demo app in your local environment, follow the instructions under "How to run app in local environment with connection to remote SlashDB demo server". If you wish to run the app in your local environment with a local Slashdb server follow the instructions under "How to run app in local environment with connection to a local SlashDB server". To simply access live version of the demo app follow this link "insert link here".
+If you simply wish to use the SDK part of the project, please follow the link to this repo https://github.com/SlashDB/react-slashdb. From there you can use import statements in your project to access the exposed methods found in the sdk. If you wish to run the demo app in your local environment, follow the instructions under "How to run app in local environment with connection to remote SlashDB demo server". If you wish to run the app in your local environment with a local Slashdb server follow the instructions under "How to run app in local environment with connection to a local SlashDB server". To simply access live version of the demo app follow this link "insert link here".
+
+### Table of Content
+---
+[I'm a reference-style link][SQLite]
+[](url)
 
 ## Brief Description
-
 ---
 
 ### SlashDB
@@ -37,6 +41,7 @@ The database used for this app is a sqlite database named taskdatadb. It consist
 ![UML Diagram](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/UML_Diagram.jpg 'UML Diagram')
 
 ## How to run app
+---
 
 ### How to run app in local environment with connection to remote SlashDB demo server
 
@@ -124,6 +129,7 @@ to pull all dependencies:
 
 ## How the app was built and example use of sdk functionality
 ---
+
 ### Setting up params for connection to SlashDB server, data format and API key.
 
 We use the exposed React component **SlashDBProvider** from the npm package **react-slashdb** in file index.js to pass variables to the sdk for use later when making http requests. Under the hood the ReactJS custom components and hooks used in this app call plain Javascript methods so in practise those can be used instead if you do not wish to use React. However since React makes front-end dev. quicker and more reusable this project is heavily geared towards demonstratng how to use react-slashdb with ReactJS. 
@@ -153,6 +159,8 @@ Second we will call **useSetUp** in the app.js to ensure internal values are set
         import { useSetUp } from 'react-slashdb';
         ...
         useSetUp();
+        
+### Authentication and login functionality     
         
 Next we will take a look at the Login.js. Now here there are a few things to understand. First when using a local SlashDB server (review steps above for spinning up the app with local server) you will have the option to log-in only with username and password. The remote demo server of SlashDB does not allow cors and so you will need to provide an API key as shown in step one of this brief explanation on how the app was set up. In file Login.js there are a few things that happen: we allow user to input username and password and we store them locally with help from the React useState hook as this is not related to how to use the sdk and it is general knowledge on React, it will not be of concern. What is of concern us the method **login** of the class **auth** exposed by the package **react-slashdb**. This method takes a username, password and a function to perform upon successful validation. Note if you are using local server for SlashDB and no API key password must be valid if you are using local or remote server as long as API key and username are correct the method auth.login with pass with success and the passed function will run. Here is a code snipit:
 
@@ -216,7 +224,7 @@ Ok so what's going on here. First we deconstruct props we got from parent cmpone
 
 Let's look at examples of how to use the fuctions we get back from both **useDataDiscovery** and **useExecuteQuery**
 
-### More on useDataDiscovery and useExecuteQuery
+### What are useDataDiscovery and useExecuteQuery hooks?  
 
 **useDataDiscovery**
 ---
