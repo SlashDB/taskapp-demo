@@ -154,4 +154,61 @@ Second we will call **useSetUp** in the app.js to ensure internal values are set
         ...
         useSetUp();
         
-sext we will take a look at the Login.js. Now here there are a few things to understand. First when using a local SlashDB server (review steps above for spinning up the app with local server) you will have the option to login only with user name and password. The remote demo server of slashdb does not allow cors and so you will need to provide a API key as show in step one of this brief explanation on how the app was set up. In file Login.js there are a few things thaty happen we allow user to input user name and password and we store them locally wit hhelp from the React useState hook as this is not related to how use the sdk and is general knowledge on React it will not be of consern. What is of consern us the method **login** of the class **auth** exposed by the package **react-slashdb**. This method takes a username, password and a function to perform upon successful validation. Note if you are using local server for SlashDB and no API key password must be valid if you are using local or remote server as long as API key and user nddd
+Next we will take a look at the Login.js. Now here there are a few things to understand. First when using a local SlashDB server (review steps above for spinning up the app with local server) you will have the option to login only with user name and password. The remote demo server of slashdb does not allow cors and so you will need to provide a API key as show in step one of this brief explanation on how the app was set up. In file Login.js there are a few things thaty happen we allow user to input user name and password and we store them locally wit hhelp from the React useState hook as this is not related to how use the sdk and is general knowledge on React it will not be of consern. What is of consern us the method **login** of the class **auth** exposed by the package **react-slashdb**. This method takes a username, password and a function to perform upon successful validation. Note if you are using local server for SlashDB and no API key password must be valid if you are using local or remote server as long as API key and username are correct the method auth.login with pass with success and the passed function will run. Here is a code snipits:
+
+        import { useSetUp, auth } from 'react-slashdb';
+        ...
+        const handleSubmit = (event) => {
+                auth.login(username, password, () => {
+                props.history.push('/app');
+        });
+                event.preventDefault();
+        };
+We have called useSetUp as a redundancy incase ity is not called before.
+
+If we have successfully logged in the path app will be pushed to the url and the file ListApp.js will be loaded. This is where we actualy access our database and rtetrive some information. First we well import the needed fuctions as so:
+
+        import { useDataDiscovery, auth } from 'react-slashdb';
+        
+Then we will use the imported hook useDataDiscovery get the table **TaskList** and also map some fuction name for later use:
+        
+        const [lists, getList, postList, putList, deleteList] = useDataDiscovery(
+        process.env.REACT_APP_DATABASE_NAME,
+        ['TaskList']
+        );
+The lists const will now hold all information in TaskList table and as the names imply getList, postList, putList and deleteList are mapped to functiiions we can call and by passing a few params execute HTTP request GET, POST, PUT and DELETE to the SlashDB API in order to interact with our data base.
+
+The other important part here is the **auth.logout**. This simple sends a logout request to the SlashDB API to log out the user.
+
+        onClick={async () => {
+          await auth.logout(() => {
+            props.history.push('/');
+          });
+        }}
+        
+From there we pass our constants down the component tree to be used at the need level.
+
+
+Let's take a look at the file List. You may think that list will be of intrest be we simple pass down params and functions we just discussed and map throw the items in the table  **TaskList** to display a list for each item in the table. As this is only React spesific code it it out side of the scope of this guide. In the file List.js we will have some sdk interactions and so they are of intrest to look at.
+
+List.js
+
+          const { TaskListId, list, getList, putList, deleteList } = props;
+          const [task, setTask] = useState('');
+
+          const location = ['TaskList', 'TaskListId', `${TaskListId}`];
+
+          const [tasks, getTasks, postTask, putTask, deleteTask] = useDataDiscovery(
+            'taskdatadb',
+            ['TaskItem', 'TaskListId', `${list.TaskListId}`]
+          );
+
+          const [queryData, executeMyQuery] = useExecuteQuery(
+            'get',
+            'percent-complete',
+            {
+              TaskListId: `${TaskListId}`,
+            }
+          );
+          
+Ok so what's going on here. Fist we deconstruct props we got from parent cmponent. The we declaire const to hold a task and to be able to update task. The we define an array which holds the path to the resource we will access. How do we know what that path is and what to put in the array? Well first we can visit the SlashDB server and access the database from the GUI and observe the url path or simple just go down the database. Here is an example: https://demo.slashdb.com/db/taskdatadb/TaskList/TaskListId as you can see first we have the base url we provided in step one of this guide then we have the database name we provided when we called **useDataDiscovery** in the previous step and after that we have the values from the array in order. This location param will be passed down the component tree for later use. Now we again call the custom hook  **useDataDiscovery** and map some functions for use later on. This time we are mapping on a different table fro mthe same data base. As the Tasks are list spesific we also pass the TaskListId as a inherit param so taht each time this component is called it will map task related data and functions to spesific lists. 
