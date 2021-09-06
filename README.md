@@ -12,7 +12,7 @@ If you simply wish to use the SDK part of the project, please follow the link to
 
 ### Table of Content
 ---
-[I'm a reference-style link][SQLite]
+[Brief Description][https://github.com/SlashDB/taskapp-demo/blob/main/README.md#brief-description]
 [](url)
 
 ## Brief Description
