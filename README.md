@@ -12,10 +12,26 @@ If you simply wish to use the SDK part of the project, please follow the link to
 
 ### Table of Content
 ---
-[Brief Description][https://github.com/SlashDB/taskapp-demo/blob/main/README.md#brief-description]
-[](url)
+[Demo app for react-slashdb](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#demo-task-list-keeping-app-with-slashdb-reactjs-and-slashdb-sdk-for-javascript-and-reactjs)
 
-## Brief Description
+[Tools used](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#tools-used)
+
+[How to run](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app)
+ - [demo server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-remote-slashdb-demo-server)
+ - [local server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)
+
+[How it was build and example react-slashdb package use](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-the-app-was-built-and-example-use-of-sdk-functionality)
+ - [set up](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#setting-up-params-for-connection-to-slashdb-server-data-format-and-api-key)
+ - [auth](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#authentication-and-login-functionality)
+ - [hooks for data access](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#using-hooks-to-interact-with-database-via-slashdb-api)
+
+[What are useDataDiscovery and useExecuteQuery hooks?](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#what-are-usedatadiscovery-and-useexecutequery-hooks)
+ - [useDataDiscovery](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#usedatadiscovery)
+ - [useExecuteQuery](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#useexecutequery)
+
+[References](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#references)
+        
+## Tools used
 ---
 
 ### SlashDB
@@ -224,7 +240,8 @@ Ok so what's going on here. First we deconstruct props we got from parent cmpone
 
 Let's look at examples of how to use the fuctions we get back from both **useDataDiscovery** and **useExecuteQuery**
 
-### What are useDataDiscovery and useExecuteQuery hooks?  
+## What are useDataDiscovery and useExecuteQuery hooks? 
+---
 
 **useDataDiscovery**
 ---
