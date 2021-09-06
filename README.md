@@ -96,9 +96,13 @@ to pull all dependencies:
 
         unzip default-slashdb-configs.zip
 
-![Unzip_slashdb](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/unzip_slashdb.jpg 'Login Screen')
+![Unzip_slashdb](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/unzip_slashdb.jpg 'Unzip_slashdb')
 
 4.  Copy and replace files from the demo app repo found in folder "data" into folder "slashdb". The files in question are: databases.cfg, taskdatadb.sqlite, users.cfg and querydefs.cfg.
+
+![Copy_Files_1](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/Copy_Files_1.jpg 'Copy_Files_1')
+
+![Copy_Files_2](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/Copy_Files_2.jpg 'Copy_Files_2')
 
 5.  Cd into folder slashdb and run command:
 
@@ -115,7 +119,6 @@ to pull all dependencies:
 1.  Run app with node dev server. Open a terminal and navigate to where the repo resides on your local system. Run command:
 
          npm start
-
 
     Use a browser to visit - "http://localhost:3000/"
 

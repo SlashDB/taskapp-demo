@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Name from './Name';
 import Task from './Task';
-import { useDataDiscovery, useExecuteQuery } from '../sdk/hooks';
+import { useDataDiscovery, useExecuteQuery } from 'react-slashdb';
 
 const List = (props) => {
   const { TaskListId, list, getList, putList, deleteList } = props;

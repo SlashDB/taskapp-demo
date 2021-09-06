@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useSetUp } from './sdk/hooks';
-import auth from './sdk/auth';
+
+import { useSetUp, auth } from 'react-slashdb';
 
 export default function Login(props) {
   //redundent call - in case user did not call useSetUp at top level of project
