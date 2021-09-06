@@ -123,9 +123,35 @@ to pull all dependencies:
     Use a browser to visit - "http://localhost:3000/"
 
 ## How the app was build and example use of sdk functionality
+---
+### Setting up params for connection to SlashDB server, data format and API key.
 
-## SDK Exposed Functionality
+We use the exposed React component **SlashDBProvider** from the npm package **react-slashdb** in file index.js to pass varibles to the sdk for use later when making http requests. Under the hood the ReactJS custom components and hooks used in this app call plain Javascript methods so in practise those can be used instead if you do not wish to use React. However sinse React makes front-end dev. quicker and more reusable this project is heavily geared towards demonstratng how to use react-slashdb with ReactJS. 
 
-### Vanilla JavaScript
+Fist we import **SlashDBProvider** into index.js and then we wrap the App component soo that all passed params can be retrived down the component tree if need be. We pass the params as key value pairs in the component. Here is a code snipits of hhow to do so:
 
-### ReactJS
+Import:
+
+        import { SlashDBProvider } from 'react-slashdb';
+
+Call compponent and wrap:
+
+        <SlashDBProvider
+        baseUrl={process.env.REACT_APP_SLASHDB_SERVER_URL}
+        setUpOptions={{
+        dataFormatExt: 'json',
+        apiKey: process.env.REACT_APP_USER_API_KEY,
+        }}
+        >
+        <App />
+        </SlashDBProvider> 
+        
+Here we have used .env file to both hide some params and to only need to change values in one place incase we need to pass the same params somewhere higher up the component tree (no the case with this demo app but good practice). All the passed params are strings. For moredetail please please refer to the documentation avaliable from the git repo associated with the package react-slashdb.
+
+Second we will call **useSetUp** in the app.js to ensure internal values are set based on passed params from previous step.
+
+        import { useSetUp } from 'react-slashdb';
+        ...
+        useSetUp();
+        
+sext we will take a look at the Login.js. Now here there are a few things to understand. First when using a local SlashDB server (review steps above for spinning up the app with local server) you will have the option to login only with user name and password. The remote demo server of slashdb does not allow cors and so you will need to provide a API key as show in step one of this brief explanation on how the app was set up. In file Login.js there are a few things thaty happen we allow user to input user name and password and we store them locally wit hhelp from the React useState hook as this is not related to how use the sdk and is general knowledge on React it will not be of consern. What is of consern us the method **login** of the class **auth** exposed by the package **react-slashdb**. This method takes a username, password and a function to perform upon successful validation. Note if you are using local server for SlashDB and no API key password must be valid if you are using local or remote server as long as API key and user nddd
