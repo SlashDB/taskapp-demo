@@ -6,9 +6,9 @@
 
 This repository contains a task list keeping app which shows how to use SlashDB for your React project. The app allows users to create and maintain lists with tasks. Lists can be created or deleted. Tasks associated with a specific list can be added, removed, and checked as complete or incomplete. The app automaticaly calculates percentage of completed tasks in each list. All lists and tasks can be changed after they have been created. This is achived by utilizing SlashDB API to retrive and commit changes to a sqlite database. This demo app contains and utilizes a Javascript and ReactJS SDK developed for the purpose of helping developers integrate SlashDB in their project quickly and easily.
 
-![Login Screen](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/Login_Screen.jpg 'Login Screen')
+![Login Screen](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Login_Screen.jpg 'Login Screen')
 
-![Task_App_Main_Sreen](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/Task_App_Main_Sreen.jpg 'Task_App_Main_Sreen')
+![Task_App_Main_Sreen](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Task_App_Main_Sreen.jpg 'Task_App_Main_Sreen')
 
 The SDK can be abstractly broken up into two parts one dedicated to functionality soley requiring the use of Javascript and one geared towards ReactJS based projects. The SDK exposes methods which allow set up of connection to a database via SlashDB as midware, basic authentication with the use of an API key, username and password as well retrieving, and committing data to said database. Custom hooks accomplishing the above listed functionality are also included. This part of the SDK caters to ReactJS projects and abstracts some of the state management.
 
@@ -52,20 +52,20 @@ Sqlite is a simple relational database management system. While SlashDB supports
 
 ### Stack
 
-![Stack](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/Stack.jpg 'Stack')
+![Stack](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Stack.jpg 'Stack')
 
 ### Database
 
 The database used for this app is a sqlite database named taskdatadb. It consists of two tables: TaskList(TaskListId (PK), Name) and TaskItem(TaskitemId (PK), Task, Checked, TaskListId (FK)). A list may contain any number of tasks or none. If a task exists it must be associated with one and only one list.
 
-![UML Diagram](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/UML_Diagram.jpg 'UML Diagram')
+![UML Diagram](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/UML_Diagram.jpg 'UML Diagram')
 
 ## How to run app
 ---
 
 ### How to run app in local environment with connection to remote SlashDB demo server
 
-1. Pull repo to your local environment via preferred method. Use "git clone <https://github.com/SlashDB/slashdb-react-sdk.git>" in preferred local directory or Download zip and unzip in preferred local directory.
+1. Pull repo to your local environment via preferred method. Use "git clone <https://github.com/SlashDB/taskapp-demo.git>" in preferred local directory or Download zip and unzip in preferred local directory.
 
 2. Open a terminal and navigate to where the repo resides on your local system. Run commands:
 
@@ -85,7 +85,7 @@ Use a browser to visit - "http://localhost:3000/"
 
 #### Pull demo app repo
 
-1. Pull repo to your local environment via preferred method. Use "git clone <https://github.com/SlashDB/slashdb-react-sdk.git>" in preferred local directory or Download zip and unzip in preferred local directory.
+1. Pull repo to your local environment via preferred method. Use "git clone <https://github.com/SlashDB/taskapp-demo.git>" in preferred local directory or Download zip and unzip in preferred local directory.
 
 2. Open a terminal and navigate to where the repo resides on your local file system. Run commands:
 
@@ -121,13 +121,13 @@ to pull all dependencies:
 
         unzip default-slashdb-configs.zip
 
-![Unzip_slashdb](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/unzip_slashdb.jpg 'Unzip_slashdb')
+![Unzip_slashdb](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/unzip_slashdb.jpg 'Unzip_slashdb')
 
 4.  Copy and replace files from the demo app repo found in folder "data" into folder "slashdb". The files in question are: databases.cfg, taskdatadb.sqlite, users.cfg and querydefs.cfg.
 
-![Copy_Files_1](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/Copy_Files_1.jpg 'Copy_Files_1')
+![Copy_Files_1](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Copy_Files_1.jpg 'Copy_Files_1')
 
-![Copy_Files_2](https://github.com/SlashDB/slashdb-react-sdk/blob/main/public/images/Copy_Files_2.jpg 'Copy_Files_2')
+![Copy_Files_2](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Copy_Files_2.jpg 'Copy_Files_2')
 
 5.  Cd into folder slashdb and run command:
 
