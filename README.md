@@ -87,13 +87,11 @@ Use a browser to visit - "http://localhost:3000/"
 
 1. Pull repo to your local environment via preferred method. Use "git clone <https://github.com/SlashDB/taskapp-demo.git>" in preferred local directory or Download zip and unzip in preferred local directory.
 
-2. Open a terminal and navigate to where the repo resides on your local file system. Run commands:
-
-**If you do not have NodeJS on your system get it from here - "https://nodejs.org/en/"**
-
-to pull all dependencies:
+2. Open a terminal and navigate to where the repo resides on your local file system. To pull all dependencies run command:
 
         npm install
+
+**If you do not have NodeJS on your system get it from here - "https://nodejs.org/en/"**
 
 3. Go to file .env and change
 
@@ -105,31 +103,39 @@ to pull all dependencies:
 
 #### Set up local server of SlashDB with Docker
 
-1.  First download the SlashDB docker image provided by our team from Docker Hub. Input the following:
+1.  Go to taska-demo folder
+
+        cd taskapp-demo
+
+2.  Download the SlashDB docker image provided by our team from Docker Hub. Input the following
 
         docker pull slashdb/slashdb
 
-2.  Check if the image is present in your local repo by (image id may differ):
+3.  Check if the image is present in your local repo by (image id may differ):
 
         docker images
         REPOSITORY      TAG         IMAGE ID        CREATED             SIZE
         slashdb         latest      edfc56915a4c    About an hour ago   1.237 GB
 
-3.  Unzip the default SlashDB configuration files:
+4.  Unzip the default SlashDB configuration files
 
         wget -c https://downloads.slashdb.com/latest/default-slashdb-configs.zip
 
         unzip default-slashdb-configs.zip
 
-![Unzip_slashdb](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/unzip_slashdb.jpg 'Unzip_slashdb')
+5.  Copy and replace the files <code>databases.cfg, taskdatadb.sqlite, users.cfg and querydefs.cfg.</code> from <code>data</code> to <code>slashdb</code>
 
-4.  Copy and replace files from the demo app repo found in folder "data" into folder "slashdb". The files in question are: databases.cfg, taskdatadb.sqlite, users.cfg and querydefs.cfg.
-
-![Copy_Files_1](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Copy_Files_1.jpg 'Copy_Files_1')
+        cp ./data/* ./slashdb
 
 ![Copy_Files_2](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Copy_Files_2.jpg 'Copy_Files_2')
 
-5.  Cd into folder slashdb and run command:
+6.  Verify list of files
+
+        mike@pure-power:~/projects/taskapp-demo$ ls slashdb
+        
+        auth.cfg  databases.cfg  license.key  nginx.conf  querydefs.cfg  slashdb.ini  taskdatadb.sqlite  users.cfg
+
+6.  Cd into folder slashdb and run command:
 
     Linux:
 
@@ -138,6 +144,12 @@ to pull all dependencies:
     Windows:
 
          docker run -d -p 8000:80 -v C:\Current\TestLocalWithConfic\slashdb:/etc/slashdb -v C:\Current\TestLocalWithConfic\slashdb:/var/log/slashdb slashdb/slashdb
+
+7.  In your browser go to http://localhost:8000 to finish the initialization process. For more details see the [video](https://www.youtube.com/watch?v=XLqTX0XHXNI) and [SlashDB Documentation](https://docs.slashdb.com/user-guide/configuration.html)
+
+8.  Visit and browse task app data at http://localhost:8000/db/taskdatadb.html. You can find more on how to use SlashDB API at https://docs.slashdb.com/user-guide/using-slashdb.html
+
+![Server view](https://user-images.githubusercontent.com/807888/132827985-7813ebc9-9adf-4418-a369-fc1684995882.png 'Server view')
 
 #### Start app
 
