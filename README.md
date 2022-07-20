@@ -53,7 +53,9 @@ The SDK is divided into two parts: a vanilla Javascript library for SlashDB and 
 
 Custom hooks accomplishing this functionality are also included. This part of the SDK caters to ReactJS projects and abstracts some of the state management.
 If you want to use the SDK part of the project, please follow the link to this repo: https://github.com/SlashDB/react-slashdb. From there, you can use import statements in your project to access the exposed methods found in the SDK. 
+
 If you want to run the demo app in your local environment, follow the instructions under **[How to run app in local environment with connection to remote SlashDB demo server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-slashdb-demo-server)**. 
+
 If you want to run the app in your local environment with a local SlashDB server, follow the instructions under **[How to run app in local environment with connection to a local SlashDB server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)**. 
 
 ## Tools used
