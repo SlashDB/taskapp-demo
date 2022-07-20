@@ -8,18 +8,31 @@ This repository contains a proof-of-concept task list app which demonstrates how
 
 ## Table of Contents
 [Overview](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#overview)
+
 [Tools used](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#tools-used)
+
 [Running the App](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#running-the-app)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[Prerequisites](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#prerequisites)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[Demo server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-slashdb-demo-server)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[Local server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)
+
 [How it was build and example react-slashdb package use](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-the-app-was-built-and-example-use-of-sdk-functionality)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[set up](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#setting-up-params-for-connection-to-slashdb-server-data-format-and-api-key)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[auth](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#authentication-and-login-functionality)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[hooks for data access](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#using-hooks-to-interact-with-database-via-slashdb-api)
+
 [What are useDataDiscovery and useExecuteQuery hooks?](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#what-are-usedatadiscovery-and-useexecutequery-hooks)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[useDataDiscovery](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#usedatadiscovery)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[useExecuteQuery](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#useexecutequery)
+
 [References](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#references)
 
 ## Overview
