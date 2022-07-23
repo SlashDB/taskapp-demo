@@ -18,7 +18,7 @@ This repository contains a proof-of-concept task list app which demonstrates how
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Local server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)
 
-[How the App was Created / Example Use of SDK Functionality](https://github.com/SlashDB/taskapp-demo/edit/main/README.md#how-the-app-was-created--example-use-of-sdk-functionality)
+[How the App was Created / Example Use of SDK Functionality](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-the-app-was-created--example-use-of-sdk-functionality)
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Set Up](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#setting-up-params-for-connection-to-slashdb-server-data-format-and-api-key)
 
