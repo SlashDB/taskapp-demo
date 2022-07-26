@@ -213,6 +213,8 @@ Call component and wrap:
         <App />
         </SlashDBProvider> 
 
+Here we have used a .env file (a feaure of NodeJS) to store the SlashDB connection parameters. 
+
 Now we will call ```useSetUp``` in the ```App.js``` file to ensure internal values are set based on the parameters provided in the previous step.
 
     import { useSetUp } from 'react-slashdb';
