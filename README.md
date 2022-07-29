@@ -10,23 +10,23 @@ This repository contains a proof-of-concept task list app which demonstrates how
 
 [Tools used](#tools-used)
 
-[Running the App](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#running-the-app)
+[Running the App](#running-the-app)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[Prerequisites](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#prerequisites)
+&nbsp;&nbsp;&nbsp;&nbsp;[Prerequisites](#prerequisites)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[Demo server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-slashdb-demo-server)
+&nbsp;&nbsp;&nbsp;&nbsp;[Demo server](#how-to-run-app-in-local-environment-with-connection-to-slashdb-demo-server)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[Local server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)
+&nbsp;&nbsp;&nbsp;&nbsp;[Local server](#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)
 
-[How the App was Created / Example Use of SDK Functionality](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-the-app-was-created--example-use-of-sdk-functionality)
+[How the App was Created / Example Use of SDK Functionality](#how-the-app-was-created--example-use-of-sdk-functionality)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[Set Up](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#setting-up-parameters-for-connection-to-slashdb-server-data-format-and-api-key)
+&nbsp;&nbsp;&nbsp;&nbsp;[Set Up](#setting-up-parameters-for-connection-to-slashdb-server-data-format-and-api-key)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[Auth](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#authentication-functionality)
+&nbsp;&nbsp;&nbsp;&nbsp;[Auth](#authentication-functionality)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[Hooks for Data Access](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#using-hooks-to-interact-with-database-via-slashdb-api)
+&nbsp;&nbsp;&nbsp;&nbsp;[Hooks for Data Access](#using-hooks-to-interact-with-database-via-slashdb-api)
 
-[References](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#references)
+[References](#references)
 
 ## Overview
 
@@ -50,9 +50,9 @@ The ReactJS package uses the vanilla Javascript library under the hood.  It also
 
 If you want to use the SDK as part of the project, you can get it at this repo: https://github.com/SlashDB/react-slashdb. From there, you can use import statements in your project to access the exposed methods found in the SDK. 
 
-If you want to run the demo app in your local environment, follow the instructions under **[How to run app in local environment with connection to remote SlashDB demo server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-slashdb-demo-server)**. 
+If you want to run the demo app in your local environment, follow the instructions under **[How to run app in local environment with connection to remote SlashDB demo server](#how-to-run-app-in-local-environment-with-connection-to-slashdb-demo-server)**. 
 
-If you want to run the app in your local environment with a local SlashDB server, follow the instructions under **[How to run app in local environment with connection to a local SlashDB server](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)**. 
+If you want to run the app in your local environment with a local SlashDB server, follow the instructions under **[How to run app in local environment with connection to a local SlashDB server](#how-to-run-app-in-local-environment-with-connection-to-a-local-slashdb-server)**. 
 
         
 ## Tools used
