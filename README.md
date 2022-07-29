@@ -6,9 +6,9 @@
 This repository contains a proof-of-concept task list app which demonstrates how to use SlashDB in a React project.  It utilizes a Javascript and ReactJS SDK created to help developers integrate SlashDB into their projects quickly and easily.
 
 ## Table of Contents
-[Overview](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#overview)
+[Overview](#overview)
 
-[Tools used](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#tools-used)
+[Tools used](#tools-used)
 
 [Running the App](https://github.com/SlashDB/taskapp-demo/blob/main/README.md#running-the-app)
 
