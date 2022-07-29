@@ -2,7 +2,7 @@ import React from 'react';
 import Lists from './components/Lists';
 import NewListArea from './components/NewListArea';
 
-import { useDataDiscovery, auth } from 'react-slashdb';
+import { useDataDiscovery, auth } from '@slashdb/react-slashdb';
 
 export default function ListApp(props) {
   const [lists, getList, postList, putList, deleteList] = useDataDiscovery(
