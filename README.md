@@ -102,7 +102,7 @@ The database used for this app is a SQLite database named ```taskdatadb```. It c
   
 ### How to Run App in Local Environment with Connection to SlashDB Demo Server
 
-1. Pull this repo to your local environment via preferred method. Use ```git clone <https://github.com/SlashDB/taskapp-demo.git>``` in your target local directory or download the zip archive and extract to your target local directory.
+1. Pull this repo to your local environment via preferred method. Use ```git clone https://github.com/SlashDB/taskapp-demo.git``` in your target local directory or download the zip archive and extract to your target local directory.
 
 2. Open a terminal and navigate to the target local directory. Run commands:
 
