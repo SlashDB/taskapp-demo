@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { useSetUp, auth}  from 'react-slashdb';
+import { useSetUp, auth}  from '@slashdb/react-slashdb';
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
 
