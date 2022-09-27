@@ -6,7 +6,7 @@ import { useSetUp, auth } from 'react-slashdb';
 
 export default function Login(props) {
   //redundent call - in case user did not call useSetUp at top level of project
-  useSetUp();
+  const sdbClient = useSetUp();
 
   const [username, setUsername] = useState(
     process.env.REACT_APP_DATABASE_USERNAME
@@ -20,8 +20,8 @@ export default function Login(props) {
   }
 
   const handleSubmit = (event) => {
-    auth.login(username, password, () => {
-      props.history.push('/app');
+    auth.login(sdbClient, () => {
+       props.history.push('/app');
     });
     event.preventDefault();
   };
