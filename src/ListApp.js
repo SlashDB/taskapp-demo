@@ -5,11 +5,13 @@ import NewListArea from './components/NewListArea';
 import { useDataDiscovery, auth } from 'react-slashdb';
 
 export default function ListApp(props) {
+
   const [lists, getList, postList, putList, deleteList] = useDataDiscovery(
     process.env.REACT_APP_DATABASE_NAME,
-    ['TaskList']
+    'TaskList'
   );
 
+    
   const buttonWrapper = {
     position: 'absolute',
     top: '43px',
@@ -40,11 +42,12 @@ export default function ListApp(props) {
       >
         Logout
       </button>
-      <NewListArea postLists={postList} getLists={getList} />
+      <NewListArea makeNewList={postList} getLists={getList} />
       {lists && (
         <Lists
           lists={lists}
           getList={getList}
+          postList={postList}
           putList={putList}
           deleteList={deleteList}
         />
