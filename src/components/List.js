@@ -1,25 +1,46 @@
 import React, { useState } from 'react';
 import Name from './Name';
 import Task from './Task';
-import { useDataDiscovery, useExecuteQuery } from '@slashdb/react-slashdb';
+
+
+import { useDataDiscovery, useExecuteQuery, useSetUp } from '@slashdb/react-slashdb';
+
+import { DataDiscoveryFilter } from '@slashdb/js-sdk/datadiscoveryfilter.js';
+import { SQLPassThruFilter } from '@slashdb/js-sdk/sqlpassthrufilter.js';
+import { eq,gte,lte } from '@slashdb/js-sdk/filterfunctions.js';
 
 const List = (props) => {
-  const { TaskListId, list, getList, putList, deleteList } = props;
+
+  const { TaskListId, list, getList, postList, putList, deleteList } = props;
   const [task, setTask] = useState('');
 
-  const location = ['TaskList', 'TaskListId', `${TaskListId}`];
+  //const location = ['TaskList', 'TaskListId', `${TaskListId}`];
+  //const path = `TaskListId/${TaskListId}?stream=true`;
+
+  // const demoClient = useSetUp('demo', 'https://demo.slashdb.com','taskapp','wwv7nppvsj147rhdbi5mnm1zm8risb53');
+  // const taskListName = new DataDiscoveryFilter(eq('TaskListId',TaskListId));
+  // const [demotasks, demogetTasks, demopostTask, demoputTask, demodeleteTask] = useDataDiscovery(
+  //    'taskdatadb',
+  //    'TaskItem', 
+  //    taskListName,
+  //    'demo'
+  //  );
+  // console.log(demotasks);
+
+  const taskListIDPath = new DataDiscoveryFilter(eq('TaskListId',TaskListId));
+  //taskListIDPath.limit();
+  const queryParams = new SQLPassThruFilter({'TaskListId':TaskListId});
+
 
   const [tasks, getTasks, postTask, putTask, deleteTask] = useDataDiscovery(
     'taskdatadb',
-    ['TaskItem', 'TaskListId', `${list.TaskListId}`]
+    'TaskItem', 
+    taskListIDPath
   );
 
   const [queryData, executeMyQuery] = useExecuteQuery(
-    'get',
     'percent-complete',
-    {
-      TaskListId: `${TaskListId}`,
-    }
+    queryParams,
   );
 
   const listWrapper = {
@@ -89,20 +110,15 @@ const List = (props) => {
           fieldName="Name"
           fieldValue={list.Name}
           update={putList}
-          location={location}
-          get={getList}
+          path={taskListIDPath}
         ></Name>
         <button
           style={removeButtonStyle}
           onClick={async () => {
             if (tasks.length > 0) {
-              await deleteTask([
-                'TaskItem',
-                'TaskListId',
-                `${list.TaskListId}`,
-              ]);
+               await deleteTask(taskListIDPath);
             }
-            await deleteList(['TaskList', 'TaskListId', `${TaskListId}`]);
+            await deleteList(taskListIDPath);
           }}
         >
           Delete
@@ -112,7 +128,7 @@ const List = (props) => {
         )}
       </div>
 
-      {tasks.map((task) => (
+      { tasks.map((task) => (
         <Task
           key={task.TaskItemId}
           task={task}
@@ -131,23 +147,21 @@ const List = (props) => {
             setTask(e.target.value);
           }}
         />
-        <button
+        { <button
           style={addButtonStyle}
           onClick={async () => {
-            await postTask(['TaskItem'], {
+            await postTask({
               Task: task ? task : 'new task',
               TaskListId: list.TaskListId,
               Checked: 0,
             }).then(() => {
-              executeMyQuery('get', 'percent-complete', {
-                TaskListId: `${TaskListId}`,
-              });
+              executeMyQuery(queryParams);
             });
             setTask('');
           }}
         >
           Add
-        </button>
+        </button> }
       </div>
     </div>
   );

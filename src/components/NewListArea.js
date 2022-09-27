@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function NewListArea(props) {
-  const { postLists } = props;
+  const { makeNewList } = props;
   const [listName, setListName] = useState('');
 
   const wrapper = {
@@ -47,9 +47,7 @@ export default function NewListArea(props) {
         <button
           style={buttonWrapper}
           onClick={() => {
-            postLists(['TaskList'], {
-              Name: listName ? listName : 'New List',
-            });
+            makeNewList({ Name: listName ? listName : 'New List', });
             setListName('');
           }}
         >

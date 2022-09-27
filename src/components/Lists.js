@@ -2,8 +2,7 @@ import React from 'react';
 import List from './List';
 
 function Lists(props) {
-  const { lists, getList, putList, deleteList } = props;
-
+  const { lists, getList, postList, putList, deleteList } = props;
   const wrapper = {
     margin: '0 auto',
     display: 'flex',
@@ -13,12 +12,14 @@ function Lists(props) {
 
   return (
     <div style={wrapper}>
+      lists goes here
       {lists.map((list) => (
         <List
           key={list.TaskListId}
           TaskListId={list.TaskListId}
           list={list}
           getList={getList}
+          postList={postList}
           putList={putList}
           deleteList={deleteList}
         />
