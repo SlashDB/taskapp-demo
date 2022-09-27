@@ -6,21 +6,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import { SlashDBProvider } from 'react-slashdb';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter basename="/">
     <SlashDBProvider
       baseUrl={process.env.REACT_APP_SLASHDB_SERVER_URL}
       setUpOptions={{
         dataFormatExt: 'json',
+        username: process.env.REACT_APP_DATABASE_USERNAME,
+        //password: process.env.REACT_APP_DATABASE_PASSWORD,
         apiKey: process.env.REACT_APP_USER_API_KEY,
+        //apiKey: undefined
       }}
     >
       <App />
     </SlashDBProvider>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById('root')
 );
