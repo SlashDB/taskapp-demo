@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Name from './Name';
 import Task from './Task';
 
-import { useDataDiscovery, useExecuteQuery, useSetUp } from 'react-slashdb';
+
+import { useDataDiscovery, useExecuteQuery, useSetUp } from '@slashdb/react-slashdb';
 
 import { DataDiscoveryFilter } from '@slashdb/js-sdk/datadiscoveryfilter.js';
 import { SQLPassThruFilter } from '@slashdb/js-sdk/sqlpassthrufilter.js';
-
 import { eq,gte,lte } from '@slashdb/js-sdk/filterfunctions.js';
 
 const List = (props) => {

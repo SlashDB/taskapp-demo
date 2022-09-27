@@ -4,8 +4,7 @@ import ListApp from './ListApp';
 import Login from './Login';
 import { Route, Switch } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
-
-//import { useSetUp } from 'react-slashdb';
+import { useSetUp } from '@slashdb/react-slashdb';
 
 function App() {
   //Call hook useSetUp to ensure params for API calls are set for use throwout project

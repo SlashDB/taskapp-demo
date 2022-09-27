@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { HashRouter } from 'react-router-dom';
 
-import { SlashDBProvider } from 'react-slashdb';
+import { SlashDBProvider } from '@slashdb/react-slashdb';
 
 ReactDOM.render(
   <HashRouter basename="/">
