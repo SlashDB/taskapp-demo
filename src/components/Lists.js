@@ -12,7 +12,6 @@ function Lists(props) {
 
   return (
     <div style={wrapper}>
-      lists goes here
       {lists.map((list) => (
         <List
           key={list.TaskListId}
