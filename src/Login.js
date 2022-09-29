@@ -20,7 +20,7 @@ export default function Login(props) {
   }
 
   const handleSubmit = (event) => {
-    auth.login(sdbClient, () => {
+    auth.login(username, password, sdbClient, () => {
        props.history.push('/app');
     });
     event.preventDefault();
