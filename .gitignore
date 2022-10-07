@@ -24,3 +24,4 @@ yarn-error.log*
 taskapp-demo.code-workspace
 package-lock.json
 package-lock.json
+.eslintcache
