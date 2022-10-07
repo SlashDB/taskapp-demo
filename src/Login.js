@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useSetUp, auth } from '@slashdb/react-slashdb';
 
 export default function Login(props) {
-  //redundent call - in case user did not call useSetUp at top level of project
+
   const sdbClient = useSetUp();
 
   const [username, setUsername] = useState(

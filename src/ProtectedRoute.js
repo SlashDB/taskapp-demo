@@ -5,8 +5,6 @@ import { auth }  from '@slashdb/react-slashdb';
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
 
-  //redundent call - in case user did not call useSetUp at top level of project
-  
   return (
     <Route
       {...rest}
