@@ -5,9 +5,9 @@ import Task from './Task';
 
 import { useDataDiscovery, useExecuteQuery, useSetUp } from '@slashdb/react-slashdb';
 
-import { DataDiscoveryFilter } from '@slashdb/js-sdk/datadiscoveryfilter.js';
-import { SQLPassThruFilter } from '@slashdb/js-sdk/sqlpassthrufilter.js';
-import { eq,gte,lte } from '@slashdb/js-sdk/filterfunctions.js';
+import { DataDiscoveryFilter } from '@slashdb/js-sdk/modules/datadiscoveryfilter.js';
+import { SQLPassThruFilter } from '@slashdb/js-sdk/modules/sqlpassthrufilter.js';
+import { eq,gte,lte } from '@slashdb/js-sdk/modules/filterfunctions.js';
 
 const List = (props) => {
 
@@ -33,7 +33,7 @@ const List = (props) => {
 
 
   const [tasks, getTasks, postTask, putTask, deleteTask] = useDataDiscovery(
-    'taskdatadb',
+    process.env.REACT_APP_DATABASE_NAME,
     'TaskItem', 
     taskListIDPath
   );
