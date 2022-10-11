@@ -10,14 +10,14 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => {
         async function checkLogin() {
-          //if ((await auth.isAuthenticated()) === false) {
-          if (auth.authenticated === false) {
+          if (! (await auth.clientIsAuthenticated()) ) {
             props.history.push('/');
+            return false;
           }
+          return true;
         }
         checkLogin();
-        //if (auth.isAuthenticated()) {
-        if (auth.authenticated) {
+        if (auth.clientIsAuthenticated()) {
           return <Component {...props} />;
         } else {
           return (
