@@ -15,8 +15,8 @@
     "@slashdb/react-slashdb": "git+ssh://github.com/SlashDB/react-slashdb.git#JS-SDK-updates"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start -- --reset-cache",
+    "build": "react-scripts build -- --reset-cache",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

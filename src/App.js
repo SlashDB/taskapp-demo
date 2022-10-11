@@ -4,8 +4,12 @@ import ListApp from './ListApp';
 import Login from './Login';
 import { Route, Switch } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
+import { useSetUp } from '@slashdb/react-slashdb';
 
 function App() {
+
+  useSetUp();
+  
   return (
     <div>
       <Header />
