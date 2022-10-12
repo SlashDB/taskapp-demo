@@ -68,7 +68,6 @@ export default function Login(props) {
         </Form.Group>
         <Button
           style={buttonWrapper}
-          block
           size="lg"
           type="submit"
           disabled={!validateForm()}
