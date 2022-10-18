@@ -15,7 +15,7 @@ export default function Header() {
   };
   const h1 = {
     color: '#fff',
-    fontFamily: 'McLaren, cursive',
+    fontFamily: 'sans-serif',
     fontWeight: '200',
   };
   return (

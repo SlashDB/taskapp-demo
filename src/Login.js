@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button';
 import { useSetUp, auth } from '@slashdb/react-slashdb';
 
 export default function Login(props) {
-  //redundent call - in case user did not call useSetUp at top level of project
-  useSetUp();
+
+  const sdbClient = useSetUp();
 
   const [username, setUsername] = useState(
     process.env.REACT_APP_DATABASE_USERNAME
@@ -20,8 +20,8 @@ export default function Login(props) {
   }
 
   const handleSubmit = (event) => {
-    auth.login(username, password, () => {
-      props.history.push('/app');
+    auth.login(username, password, sdbClient, () => {
+       props.history.push('/app');
     });
     event.preventDefault();
   };
@@ -68,7 +68,6 @@ export default function Login(props) {
         </Form.Group>
         <Button
           style={buttonWrapper}
-          block
           size="lg"
           type="submit"
           disabled={!validateForm()}

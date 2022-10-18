@@ -1,10 +1,16 @@
 import React from 'react';
 import Name from './Name';
 
+import { DataDiscoveryFilter } from '@slashdb/js-sdk/modules/datadiscoveryfilter.js';
+import { SQLPassThruFilter } from '@slashdb/js-sdk/modules/sqlpassthrufilter.js';
+import { eq } from '@slashdb/js-sdk/modules/filterfunctions.js';
+
 const Task = (props) => {
   const { task, getTasks, putTask, deleteTask, executeMyQuery } = props;
-  const location = ['TaskItem', 'TaskItemId', `${task.TaskItemId}`];
 
+  const taskIDPath = new DataDiscoveryFilter(eq('TaskItemId',task.TaskItemId))
+  const queryParams = new SQLPassThruFilter({'TaskListId':task.TaskListId});  
+  
   const taskItemStyle = {
     listStyleType: 'none',
     padding: '7.5px',
@@ -45,8 +51,7 @@ const Task = (props) => {
         fieldName="Task"
         fieldValue={task.Task}
         update={putTask}
-        location={location}
-        //get={getTasks}
+        path={taskIDPath}
       ></Name>
       <div
         style={{
@@ -60,26 +65,22 @@ const Task = (props) => {
           type="checkbox"
           checked={task.Checked}
           onChange={() => {
-            putTask(['TaskItem', 'TaskItemId', `${task.TaskItemId}`], {
+            putTask(taskIDPath, {
               Checked: !task.Checked,
             }).then(() => {
-              executeMyQuery('get', 'percent-complete', {
-                TaskListId: `${task.TaskListId}`,
-              });
+              executeMyQuery(queryParams)
             });
           }}
         ></input>
         <button
           style={removeButtonStyle}
           onClick={() => {
-            deleteTask(['TaskItem', 'TaskItemId', `${task.TaskItemId}`]).then(
+            deleteTask(taskIDPath).then(
               () => {
-                executeMyQuery('get', 'percent-complete', {
-                  TaskListId: `${task.TaskListId}`,
-                });
+                executeMyQuery(queryParams);
+               });
               }
-            );
-          }}
+            }
         >
           X
         </button>

@@ -1,24 +1,23 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { useSetUp, auth}  from '@slashdb/react-slashdb';
+import { auth }  from '@slashdb/react-slashdb';
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
 
-  //redundent call - in case user did not call useSetUp at top level of project
-  useSetUp();
-  
   return (
     <Route
       {...rest}
       render={(props) => {
         async function checkLogin() {
-          if ((await auth.isAuthenticated()) === false) {
+          if (! (await auth.clientIsAuthenticated()) ) {
             props.history.push('/');
+            return false;
           }
+          return true;
         }
         checkLogin();
-        if (auth.isAuthenticated()) {
+        if (auth.clientIsAuthenticated()) {
           return <Component {...props} />;
         } else {
           return (
