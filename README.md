@@ -275,7 +275,7 @@ The file ```Lists.js``` is a simple container for our ```List``` components; the
 Let’s step through what’s happening here:
 - We deconstruct props from the parent component
 - We call the ```useState``` hook to hold and update a task
-- We use two classes from the [SlashDB JavaScript SDK](https://github.com/SlashDB/js-slashdb) to create filters for the `useDataDiscovery` and `useExecuteQuery` hooks: `DataDiscoveryFilter` and `SQLPassThruFilter`, along with the `eq` filter function.  It's not required to use these classes to create filters, but it makes things easier.  These classes create endpoints to a resource path like the one below.  You can access the SlashDB server in a browser, open the database table for ```TaskList```, and check the URL path in the location bar. For example: 
+- We use two classes from the [SlashDB JavaScript SDK](https://github.com/SlashDB/js-slashdb) to create filters for the `useDataDiscovery` and `useExecuteQuery` hooks: `DataDiscoveryFilter` and `SQLPassThruFilter`, along with the `eq` filter function.  It's not required to use these classes to create filters, but it makes things easier for someone who doesn't understand SlashDB URL endpoints.  These classes create endpoints to a resource path like the one below.  You can access the SlashDB server in a browser, open the database table for ```TaskList```, and check the URL path in the location bar. For example: 
 
   https://demo.slashdb.com/db/taskdatadb/TaskList/TaskListId
   
