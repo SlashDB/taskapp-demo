@@ -249,43 +249,48 @@ The ```lists``` constant will now hold all information in the ```TaskList``` tab
 
 The file ```Lists.js``` is a simple container for our ```List``` components; the constants created above are passed down in this file to each ```List``` component.  In the file ```List.js``` we have the following code:
 
+      import { DataDiscoveryFilter } from '@slashdb/js-slashdb/modules/datadiscoveryfilter.js';
+      import { SQLPassThruFilter } from '@slashdb/js-slashdb/modules/sqlpassthrufilter.js';
+      import { eq } from '@slashdb/js-slashdb/modules/filterfunctions.js';
+      .
+      .
+      .
       const { TaskListId, list, getList, putList, deleteList } = props;
       const [task, setTask] = useState('');
 
-      const location = ['TaskList', 'TaskListId', `${TaskListId}`];
+      const taskListIDPath = new DataDiscoveryFilter(eq('TaskListId',TaskListId));
+      const queryParams = new SQLPassThruFilter({'TaskListId':TaskListId});
 
       const [tasks, getTasks, postTask, putTask, deleteTask] = useDataDiscovery(
-        'taskdatadb',
-        ['TaskItem', 'TaskListId', `${list.TaskListId}`]
+        process.env.REACT_APP_DATABASE_NAME,
+        'TaskItem', 
+        taskListIDPath
       );
 
       const [queryData, executeMyQuery] = useExecuteQuery(
-        'get',
         'percent-complete',
-        {
-          TaskListId: `${TaskListId}`,
-        }
-      );
+        queryParams,
+  );
 
 Let’s step through what’s happening here:
-- we deconstruct props from the parent component
-- we call the ```useState``` hook to hold and update a task
-- we define an array which holds the path to the resource we will access. To get the resource path, you can access the SlashDB server in a browser, open the database table for ```TaskList```, and check the URL path in the location bar. For example: 
+- We deconstruct props from the parent component
+- We call the ```useState``` hook to hold and update a task
+- We use two classes from the [SlashDB JavaScript SDK](https://github.com/SlashDB/js-slashdb) to create filters for the `useDataDiscovery` and `useExecuteQuery` hooks: `DataDiscoveryFilter` and `SQLPassThruFilter`, along with the `eq` filter function.  It's not required to use these classes to create filters, but it makes things easier.  These classes create endpoints to a resource path like the one below.  You can access the SlashDB server in a browser, open the database table for ```TaskList```, and check the URL path in the location bar. For example: 
 
   https://demo.slashdb.com/db/taskdatadb/TaskList/TaskListId
   
   contains the base URL (```https://demo.slashdb.com```), the database name used in the ```useDataDiscovery``` call (```taskdatadb```), the table to return (```Tasklist```), and a field to filter by (```TaskListId```).
-- we call the ```useDataDiscovery``` hook to get functions for updating the individual tasks, requesting data from the ```TaskItem``` table in the same database.  Since the task items are specific to each list, we also provide the ```TaskListId``` so that the data returned is filtered for each unique list.  
+- we call the ```useDataDiscovery``` hook with the `DataDiscoveryFilter` object to get function references for updating the individual tasks, requesting data from the ```TaskItem``` table in the same database.  Since the task items are specific to each list, we also provide the ```TaskListId``` so that the data returned is filtered for each unique list.  
 - with the ```useExecuteQuery``` hook, we can make use of another SlashDB feature - SQL Pass-thru. 
 
-To summarize, the ```useDataDiscovery``` hook enables Data Discovery functionality, and ```useExecuteQuery``` enables SQL Pass-thru. ```useExecuteQuery``` takes a few parameters - the method to be used by the HTTP request, the name of the query to be executed, and any parameters the query requires to execute.  The query itself is defined in the SlashDB administrative panel, and the query name used in the function parameter should match the name given in SlashDB.  This app uses the query below:
+To summarize, the ```useDataDiscovery``` hook enables Data Discovery functionality, and ```useExecuteQuery``` enables SQL Pass-thru. ```useExecuteQuery``` takes two parameters - the name of the query to be executed, and any parameters the query requires to execute.  The query itself is defined in the SlashDB administrative panel, and the query name used in the function parameter should match the name given in SlashDB.  This app uses the query below:
 
     SELECT
             (SUM(Checked) * 100 / COUNT(Checked)) Percentage
     FROM TaskItem
     WHERE TaskListId = :TaskListId
 
- If you want to know more about what SlashDB offers and what the react-slashdb SDK offers, you can review the documentation for both products. Note that currently,  the react-slashdb package has some limited functionality as compared to what SlashDB contains. 
+ If you want to know more about what SlashDB offers and what the SlashDB React SDK offers, you can review the documentation for both products. Note that currently, the react-slashdb package has some limited functionality as compared to what SlashDB contains. 
 
 ## References 
 #### SlashDB Docs - https://www.slashdb.com/documentation/
