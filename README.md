@@ -1,9 +1,9 @@
-# Demo Task List App using Slashdb, ReactJS and SlashDB SDK for Javascript and ReactJS
+# Demo Task List App Using SlashDB and SlashDB React SDK
 ---
 [SlashDB](https://www.slashdb.com/), [SlashDB documentation](https://www.slashdb.com/documentation/), [react-slashdb](https://github.com/SlashDB/react-slashdb), [react-slashdb documentation](https://slashdb.github.io/react-slashdb/)
 ---
 
-This repository contains a proof-of-concept task list app which demonstrates how to use SlashDB in a React project.  It utilizes a Javascript and ReactJS SDK created to help developers integrate SlashDB into their projects quickly and easily.
+This repository contains a proof-of-concept task list app which demonstrates how to use SlashDB in a React project.  It utilizes the [SlashDB React SDK](https://github.com/SlashDB/react-slashdb) created to help developers integrate SlashDB into their projects quickly and easily.
 
 ## Table of Contents
 [Overview](#overview)
@@ -41,12 +41,12 @@ App functions:
 
 ![Task_App_Main_Sreen](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Task_App_Main_Sreen.jpg 'Task_App_Main_Sreen')
 
-The SDK is divided into two parts: a vanilla Javascript library for SlashDB and a ReactJS package that enables React apps to use a database that is connected to SlashDB. The SDK provides methods that allow:
+The SDK provides methods that allow:
 - setting up a connection to a SlashDB instance
 - basic authentication using an API key or username/password
 - CRUD operations on the SlashDB-enabled database
 
-The ReactJS package uses the vanilla Javascript library under the hood.  It also includes custom hooks to execute the functions listed above, and abstracts some of the state management.
+The SDK uses the [SlashDB Javascript SDK](https://github.com/SlashDB/js-slashdb) under the hood.  It also includes custom hooks to execute the functions listed above, and abstracts some of the state management.
 
 If you want to use the SDK as part of the project, you can get it at this repo: https://github.com/SlashDB/react-slashdb. From there, you can use import statements in your project to access the exposed methods found in the SDK. 
 
@@ -58,24 +58,21 @@ If you want to run the app in your local environment with a local SlashDB server
 ## Tools used
 
 ### SlashDB
-
 SlashDB is an application that automatically creates a fully functional REST API for most popular SQL-based relational databases.  By automating this process, developers can focus their time on product development, and put aside designing/coding/testing an API for database-centric applications - SlashDB takes care of the details.
 
+### React
+React is a front-end framework for creating web applications, using a component-based development model. 
 
-### ReactJS
-
-ReactJS is a front-end framework for creating web applications, using a component-based development model. 
+### SlashDB JavaScript SDK
+[A vanilla JavaScript SDK written in ES6 syntax for interacting with SlashDB](https://github.com/SlashDB/js-slashdb)
 
 ### SQLite
-
-SQLite is a simple relational database package. While SlashDB supports a variety of SQL databases, this project utilizes SQLIte to demonstrate the capabilities of the SDK and how to integrate SlashDB in Javascript and ReactJS applications.
+SQLite is a simple relational database package. While SlashDB supports a variety of SQL databases, this project utilizes SQLIte to demonstrate the capabilities of the SDK and how to integrate SlashDB in Javascript and React applications.
 
 ### Stack
-
 ![Stack](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Stack.jpg 'Stack')
 
 ### Database
-
 The database used for this app is a SQLite database named ```taskdatadb```. It consists of two tables: ```TaskList(TaskListId (PK), Name)``` and ```TaskItem(TaskitemId (PK), Task, Checked, TaskListId (FK))```. A list may contain any number of tasks or none. If a task exists, it must be associated with one and only one list.
 
 ![UML Diagram](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/UML_Diagram.jpg 'UML Diagram')
@@ -195,7 +192,7 @@ Then open a browser and navigate to http://localhost:3000/
 
 ### Setting up Parameters for Connection to SlashDB Server, Data Format and API Key
 
-We use the React component ```SlashDBProvider``` from the npm package react-slashdb in file ```index.js``` to pass variables to the app for use later when making HTTP requests. See the [SlashDB ReactJS SDK documentation](https://github.com/SlashDB/react-slashdb) for more details.  Below is the code used in the demo app:
+We use the React component ```SlashDBProvider``` from the npm package react-slashdb in file ```index.js``` to pass variables to the app for use later when making HTTP requests. See the [SlashDB React SDK documentation](https://github.com/SlashDB/react-slashdb) for more details.  Below is the code used in the demo app:
 
 Import:
 
@@ -227,8 +224,9 @@ Let's examine the ```Login.js``` file. We provide a username and password to the
 
     import { useSetUp, auth } from 'react-slashdb';
     ...
+    const sdbClient = useSetUp();    
     const handleSubmit = (event) => {
-            auth.login(username, password, () => {
+            auth.login(username, password, sdbClient, () => {
             props.history.push('/app');
     });
             event.preventDefault();
@@ -285,11 +283,12 @@ To summarize, the ```useDataDiscovery``` hook enables Data Discovery functionali
     SELECT
             (SUM(Checked) * 100 / COUNT(Checked)) Percentage
     FROM TaskItem
-    Where TaskListId = :TaskListId
+    WHERE TaskListId = :TaskListId
 
  If you want to know more about what SlashDB offers and what the react-slashdb SDK offers, you can review the documentation for both products. Note that currently,  the react-slashdb package has some limited functionality as compared to what SlashDB contains. 
 
 ## References 
 ### SlashDB Docs - https://www.slashdb.com/documentation/
-### SDK for React (react-slashdb package) - https://github.com/SlashDB/react-slashdb and https://www.npmjs.com/package/react-slashdb
+### SlashDB React SDK (react-slashdb package) - https://github.com/SlashDB/react-slashdb and https://www.npmjs.com/package/@slashdb/react-slashdb
+### SlashDB JavaScript SDK (js-slashdb package) - https://github.com/SlashDB/js-slashdb and https://www.npmjs.com/package/@slashdb/js-slashdb
 ### SlashDB Website - https://www.slashdb.com/         
