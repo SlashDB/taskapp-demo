@@ -14,9 +14,6 @@ const List = (props) => {
   const { TaskListId, list, getList, postList, putList, deleteList } = props;
   const [task, setTask] = useState('');
 
-  //const location = ['TaskList', 'TaskListId', `${TaskListId}`];
-  //const path = `TaskListId/${TaskListId}?stream=true`;
-
   // const demoClient = useSetUp('demo', 'https://demo.slashdb.com','taskapp','wwv7nppvsj147rhdbi5mnm1zm8risb53');
   // const taskListName = new DataDiscoveryFilter(eq('TaskListId',TaskListId));
   // const [demotasks, demogetTasks, demopostTask, demoputTask, demodeleteTask] = useDataDiscovery(
@@ -28,9 +25,7 @@ const List = (props) => {
   // console.log(demotasks);
 
   const taskListIDPath = new DataDiscoveryFilter(eq('TaskListId',TaskListId));
-  //taskListIDPath.limit();
   const queryParams = new SQLPassThruFilter({'TaskListId':TaskListId});
-
 
   const [tasks, getTasks, postTask, putTask, deleteTask] = useDataDiscovery(
     process.env.REACT_APP_DATABASE_NAME,
