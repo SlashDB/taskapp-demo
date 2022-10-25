@@ -288,7 +288,7 @@ To summarize, the ```useDataDiscovery``` hook enables Data Discovery functionali
  If you want to know more about what SlashDB offers and what the react-slashdb SDK offers, you can review the documentation for both products. Note that currently,  the react-slashdb package has some limited functionality as compared to what SlashDB contains. 
 
 ## References 
-SlashDB Docs - https://www.slashdb.com/documentation/
-SlashDB React SDK (react-slashdb package) - https://github.com/SlashDB/react-slashdb and https://www.npmjs.com/package/@slashdb/react-slashdb
-SlashDB JavaScript SDK (js-slashdb package) - https://github.com/SlashDB/js-slashdb and https://www.npmjs.com/package/@slashdb/js-slashdb
-SlashDB Website - https://www.slashdb.com/         
+#### SlashDB Docs - https://www.slashdb.com/documentation/
+#### SlashDB React SDK (react-slashdb package) - https://github.com/SlashDB/react-slashdb and https://www.npmjs.com/package/@slashdb/react-slashdb
+#### SlashDB JavaScript SDK (js-slashdb package) - https://github.com/SlashDB/js-slashdb and https://www.npmjs.com/package/@slashdb/js-slashdb
+#### SlashDB Website - https://www.slashdb.com/         
