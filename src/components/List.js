@@ -5,9 +5,9 @@ import Task from './Task';
 
 import { useDataDiscovery, useExecuteQuery, useSetUp } from '@slashdb/react-slashdb';
 
-import { DataDiscoveryFilter } from '@slashdb/js-sdk/modules/datadiscoveryfilter.js';
-import { SQLPassThruFilter } from '@slashdb/js-sdk/modules/sqlpassthrufilter.js';
-import { eq,gte,lte } from '@slashdb/js-sdk/modules/filterfunctions.js';
+import { DataDiscoveryFilter } from '@slashdb/js-slashdb/modules/datadiscoveryfilter.js';
+import { SQLPassThruFilter } from '@slashdb/js-slashdb/modules/sqlpassthrufilter.js';
+import { eq,gte,lte } from '@slashdb/js-slashdb/modules/filterfunctions.js';
 
 const List = (props) => {
 
