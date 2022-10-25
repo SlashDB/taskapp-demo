@@ -275,11 +275,11 @@ The file ```Lists.js``` is a simple container for our ```List``` components; the
 Let’s step through what’s happening here:
 - We deconstruct props from the parent component
 - We call the ```useState``` hook to hold and update a task
-- We use two classes from the [SlashDB JavaScript SDK](https://github.com/SlashDB/js-slashdb) to create filters for the `useDataDiscovery` and `useExecuteQuery` hooks: `DataDiscoveryFilter` and `SQLPassThruFilter`, along with the `eq` filter function.  It's not required to use these classes to create filters, but it makes things easier for someone who doesn't understand SlashDB URL endpoints.  These classes create endpoints to a resource path like the one below.  You can access the SlashDB server in a browser, open the database table for ```TaskList```, and check the URL path in the location bar. For example: 
+- We use two classes from the [SlashDB JavaScript SDK](https://github.com/SlashDB/js-slashdb) to create filters for the `useDataDiscovery` and `useExecuteQuery` hooks: `DataDiscoveryFilter` and `SQLPassThruFilter`, along with the `eq` filter function.  It's not required to use these classes to create filters, but it makes things easier for someone who doesn't understand SlashDB URL endpoints.  These classes create endpoints to a resource path like the one below.  You can access the SlashDB server in a browser, open the database table for ```TaskItem```, and check the URL path in the location bar. For example: 
 
   https://demo.slashdb.com/db/taskdatadb/TaskItem/TaskListId
   
-  contains the base URL (```https://demo.slashdb.com```), the database name used in the ```useDataDiscovery``` call (```taskdatadb```), the table to return (```Tasklist```), and a field to filter by (```TaskListId```).
+  contains the base URL (```https://demo.slashdb.com```), the database name used in the ```useDataDiscovery``` call (```taskdatadb```), the table to return (```TaskItem```), and a field to filter by (```TaskListId```).
 - we call the ```useDataDiscovery``` hook with the `DataDiscoveryFilter` object to get function references for updating the individual tasks, requesting data from the ```TaskItem``` table in the same database.  Since the task items are specific to each list, we also provide the ```TaskListId``` so that the data returned is filtered for each unique list.  
 - with the ```useExecuteQuery``` hook, we can make use of another SlashDB feature - SQL Pass-thru. 
 
