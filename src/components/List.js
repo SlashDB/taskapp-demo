@@ -24,7 +24,6 @@ const List = (props) => {
   // console.log(demotasks);
 
   const taskListIDPath = new DataDiscoveryFilter(eq('TaskListId',TaskListId));
-  //taskListIDPath.limit();
   const queryParams = new SQLPassThruFilter({'TaskListId':TaskListId});
 
 
