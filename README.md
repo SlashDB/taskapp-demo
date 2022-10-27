@@ -1,9 +1,9 @@
-# Demo Task List App using Slashdb, ReactJS and SlashDB SDK for Javascript and ReactJS
+# Demo Task List App using Slashdb, React and SlashDB SDK for Javascript and React
 ---
 [SlashDB](https://www.slashdb.com/), [SlashDB documentation](https://www.slashdb.com/documentation/), [react-slashdb](https://github.com/SlashDB/react-slashdb), [react-slashdb documentation](https://slashdb.github.io/react-slashdb/)
 ---
 
-This repository contains a proof-of-concept task list app which demonstrates how to use SlashDB in a React project.  It utilizes a Javascript and ReactJS SDK created to help developers integrate SlashDB into their projects quickly and easily.
+This repository contains a proof-of-concept task list app which demonstrates how to use SlashDB in a React project.  It utilizes a Javascript and React SDK created to help developers integrate SlashDB into their projects quickly and easily.
 
 ## Table of Contents
 [Overview](#overview)
@@ -39,16 +39,17 @@ App functions:
 
 ![Login Screen](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Login_Screen.jpg 'Login Screen')
 
-![Task_App_Main_Sreen](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Task_App_Main_Sreen.jpg 'Task_App_Main_Sreen')
+![Task_App_Main_Screen](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Task_App_Main_Sreen.jpg 'Task_App_Main_Screen')
 
-The SDK is divided into two parts: a vanilla Javascript library for SlashDB and a ReactJS package that enables React apps to use a database that is connected to SlashDB. The SDK provides methods that allow:
+The SDK provides methods that allow:
 - setting up a connection to a SlashDB instance
 - basic authentication using an API key or username/password
 - CRUD operations on the SlashDB-enabled database
+- executing pre-defined queries on the SlashDB-enabled database
 
-The ReactJS package uses the vanilla Javascript library under the hood.  It also includes custom hooks to execute the functions listed above, and abstracts some of the state management.
+The React package uses the [SlashDB JavaScript SDK](https://github.com/SlashDB/js-slashdb) under the hood.  It also includes custom hooks to execute the functions listed above, and abstracts some of the state management.
 
-If you want to use the SDK as part of the project, you can get it at this repo: https://github.com/SlashDB/react-slashdb. From there, you can use import statements in your project to access the exposed methods found in the SDK. 
+If you want to use the SDK as part of the project, you can get it at this repo: https://github.com/SlashDB/react-slashdb.  It's also available as an npm package, [@slashdb/react-slashdb](https://www.npmjs.com/package/@slashdb/react-slashdb).  From there, you can use import statements in your project to access the exposed methods found in the SDK. 
 
 If you want to run the demo app in your local environment, follow the instructions under **[How to run app in local environment with connection to remote SlashDB demo server](#how-to-run-app-in-local-environment-with-connection-to-slashdb-demo-server)**. 
 
@@ -69,7 +70,7 @@ React is a front-end framework for creating web applications, using a component-
 
 ### SQLite
 
-SQLite is a simple relational database package. While SlashDB supports a variety of SQL databases, this project utilizes SQLIte to demonstrate the capabilities of the SDK and how to integrate SlashDB in Javascript and ReactJS applications.
+SQLite is a simple relational database package. While SlashDB supports a variety of SQL databases, this project utilizes SQLIte to demonstrate the capabilities of the SDK and how to integrate SlashDB in Javascript and React applications.
 
 ### Stack
 
@@ -196,7 +197,7 @@ Then open a browser and navigate to http://localhost:3000/
 
 ### Setting up Parameters for Connection to SlashDB Server, Data Format and API Key
 
-We use the React component ```SlashDBProvider``` from the npm package react-slashdb in file ```index.js``` to pass variables to the app for use later when making HTTP requests. See the [SlashDB ReactJS SDK documentation](https://github.com/SlashDB/react-slashdb) for more details.  Below is the code used in the demo app:
+We use the React component ```SlashDBProvider``` from the npm package react-slashdb in file ```index.js``` to pass variables to the app for use later when making HTTP requests. See the [SlashDB React SDK documentation](https://github.com/SlashDB/react-slashdb) for more details.  Below is the code used in the demo app:
 
 Import:
 
@@ -207,7 +208,7 @@ Call component and wrap:
         <SlashDBProvider
         baseUrl={process.env.REACT_APP_SLASHDB_SERVER_URL}
         setUpOptions={{
-        dataFormatExt: 'json',
+        username: process.env.REACT_APP_DATABASE_USERNAME,
         apiKey: process.env.REACT_APP_USER_API_KEY,
         }}
         >
@@ -216,7 +217,7 @@ Call component and wrap:
 
 Here we have used a ```.env``` file (a feaure of NodeJS) to store the SlashDB connection parameters. 
 
-Now we will call ```useSetUp``` in the ```App.js``` file to ensure internal values are set based on the parameters provided in the previous step.
+Now we will call ```useSetUp``` in the ```App.js``` file to ensure the custom hooks can access the parameters provided in the previous step.
 
     import { useSetUp } from '@slashdb/react-slashdb';
     ...
@@ -235,7 +236,7 @@ Let's examine the ```Login.js``` file. We provide a username and password to the
     });
             event.preventDefault();
     };
-On successful login, the browser will redirect to the ```/app``` URL.  For more information on the ```auth``` method, see the [SlashDB React SDK](https://github.com/SlashDB/react-slashdb)
+On successful login, the browser will redirect to the ```/app``` URL.  For more information on the ```auth``` class, see the [SlashDB React SDK](https://github.com/SlashDB/react-slashdb)
 
 ### Using Hooks to Interact with Database via SlashDB API
 Once we have logged in, the file ```ListApp.js``` will be loaded. This is where we actually access the database and retrieve some information.  First, we will import the required functions:
@@ -246,10 +247,10 @@ Then we will call the imported hook ```useDataDiscovery``` to retrieve the data 
 
     const [lists, getList, postList, putList, deleteList] = useDataDiscovery(
     process.env.REACT_APP_DATABASE_NAME,
-    ['TaskList']
+    'TaskList'
     );
 
-The ```lists``` constant will now hold all information in the ```TaskList``` table.   Constants ```getList```, ```postList```, ```putList```, and ```deleteList``` are function references that we can call with some parameters to make GET, POST, PUT and DELETE calls to the SlashDB API to interact with the database.  We can pass these constants down to the child components.
+```lists``` is an array that will hold all information in the ```TaskList``` table .   Constants ```getList```, ```postList```, ```putList```, and ```deleteList``` are function references that we can call with some parameters to make GET, POST, PUT and DELETE calls to the SlashDB API to interact with the database.  We can pass these constants down to the child components.
 
 The file ```Lists.js``` is a simple container for our ```List``` components; the constants created above are passed down in this file to each ```List``` component.  In the file ```List.js``` we have the following code:
 
