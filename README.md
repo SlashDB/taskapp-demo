@@ -200,7 +200,7 @@ We use the React component ```SlashDBProvider``` from the npm package react-slas
 
 Import:
 
-        import { SlashDBProvider } from 'react-slashdb';
+        import { SlashDBProvider } from '@slashdb/react-slashdb';
 
 Call component and wrap:
 
@@ -218,7 +218,7 @@ Here we have used a ```.env``` file (a feaure of NodeJS) to store the SlashDB co
 
 Now we will call ```useSetUp``` in the ```App.js``` file to ensure internal values are set based on the parameters provided in the previous step.
 
-    import { useSetUp } from 'react-slashdb';
+    import { useSetUp } from '@slashdb/react-slashdb';
     ...
     useSetUp();
 
@@ -226,7 +226,7 @@ Now we will call ```useSetUp``` in the ```App.js``` file to ensure internal valu
 
 Let's examine the ```Login.js``` file. We provide a username and password to the ```auth.login``` method:
 
-    import { useSetUp, auth } from 'react-slashdb';
+    import { useSetUp, auth } from '@slashdb/react-slashdb';
     ...
     sdbClient = useSetUp();
     const handleSubmit = (event) => {
@@ -240,7 +240,7 @@ On successful login, the browser will redirect to the ```/app``` URL.  For more 
 ### Using Hooks to Interact with Database via SlashDB API
 Once we have logged in, the file ```ListApp.js``` will be loaded. This is where we actually access the database and retrieve some information.  First, we will import the required functions:
 
-    import { useDataDiscovery, auth } from 'react-slashdb';
+    import { useDataDiscovery, auth } from '@slashdb/react-slashdb';
     
 Then we will call the imported hook ```useDataDiscovery``` to retrieve the data in table ```TaskList``` and obtain some function references for interacting with the table:
 
@@ -257,7 +257,6 @@ The file ```Lists.js``` is a simple container for our ```List``` components; the
       .
       .
       .
-
       const { TaskListId, list, getList, putList, deleteList } = props;
       const [task, setTask] = useState('');
 
