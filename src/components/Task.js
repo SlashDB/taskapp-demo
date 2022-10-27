@@ -1,9 +1,7 @@
 import React from 'react';
 import Name from './Name';
 
-import { DataDiscoveryFilter } from '@slashdb/js-sdk/modules/datadiscoveryfilter.js';
-import { SQLPassThruFilter } from '@slashdb/js-sdk/modules/sqlpassthrufilter.js';
-import { eq } from '@slashdb/js-sdk/modules/filterfunctions.js';
+import { DataDiscoveryFilter, SQLPassThruFilter, eq } from '@slashdb/js-slashdb';
 
 const Task = (props) => {
   const { task, getTasks, putTask, deleteTask, executeMyQuery } = props;
