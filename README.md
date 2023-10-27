@@ -177,7 +177,7 @@ Then open a browser and navigate to http://localhost:3000/
 
    Linux:
 
-         docker run -d -p 8000:80 -v $(pwd):/etc/slashdb -v $(pwd):/var/log/slashdb slashdb/slashdb
+         docker run -d -p 8000:80 -v $(pwd)/slashdb:/etc/slashdb -v $(pwd)/slashdb-log:/var/log/slashdb slashdb/slashdb
 
    Windows (PowerShell):
 
