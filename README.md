@@ -169,19 +169,27 @@ Then open a browser and navigate to http://localhost:3000/
         ls slashdb
         auth.cfg  databases.cfg  license.key  nginx.conf  querydefs.cfg  slashdb.ini  taskdatadb.sqlite  users.cfg
 
-7.  Navigate to folder slashdb and run command:
+7.  Create folder for **SlashDB** logs.
+
+        mkdir slashdb-log
+
+8.  Create **SlashDB** docker container:
 
    Linux:
 
          docker run -d -p 8000:80 -v $(pwd):/etc/slashdb -v $(pwd):/var/log/slashdb slashdb/slashdb
 
-   Windows:
+   Windows (PowerShell):
 
-         docker run -d -p 8000:80 -v C:\Current\TestLocalWithConfic\slashdb:/etc/slashdb -v C:\Current\TestLocalWithConfic\slashdb:/var/log/slashdb slashdb/slashdb
+         docker run -d -p 8000:80 -v $pwd/slashdb:/etc/slashdb -v $pwd/slashdb-log:/var/log/slashdb slashdb/slashdb
 
-8.  In your browser, go to http://localhost:8000 to finish the initialization process. For more details see the [video](https://www.youtube.com/watch?v=XLqTX0XHXNI) and [SlashDB Documentation](https://docs.slashdb.com/user-guide/configuration.html)
+   Windows (Command Prompt):
 
-9.  Browse task app data at http://localhost:8000/db/taskdatadb.html. You can find more on how to use SlashDB API at https://docs.slashdb.com/user-guide/using-slashdb.html
+         docker run -d -p 8000:80 -v %cd%/slashdb:/etc/slashdb -v %cd%/slashdb-log:/var/log/slashdb slashdb/slashdb
+
+9.  In your browser, go to http://localhost:8000 to finish the initialization process. For more details see the [video](https://www.youtube.com/watch?v=XLqTX0XHXNI) and [SlashDB Documentation](https://docs.slashdb.com/user-guide/configuration.html)
+
+10.  Browse task app data at http://localhost:8000/db/taskdatadb.html. You can find more on how to use SlashDB API at https://docs.slashdb.com/user-guide/using-slashdb.html
 
 ![Server view](https://user-images.githubusercontent.com/807888/132827985-7813ebc9-9adf-4418-a369-fc1684995882.png 'Server view')
 
