@@ -11,6 +11,10 @@
 # production
 /build
 
+# SlashDB config and log files
+/slashdb
+/slashdb-log
+
 # misc
 .DS_Store
 .env.local
