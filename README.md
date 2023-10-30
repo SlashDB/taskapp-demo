@@ -153,10 +153,10 @@ Then open a browser and navigate to http://localhost:3000/
         REPOSITORY      TAG         IMAGE ID        CREATED             SIZE
         slashdb         latest      edfc56915a4c    About an hour ago   1.237 GB
 
-4.  Download and unzip the default SlashDB configuration files while in the local target directory:
+4.  Follow the instruction in [SlashDB documentation](https://docs.slashdb.com/user-guide/getting-slashdb/docker/) to download the latest configuration files. For example, for version `1.7.29` the commands would be:
 
-        wget -c https://downloads.slashdb.com/latest/default-slashdb-configs.zip
-        unzip default-slashdb-configs.zip
+        wget -c https://downloads.slashdb.com/versions/1.7.29/default-slashdb-configs_1.7.29.zip
+        unzip default-slashdb-configs_1.7.29.zip
 
 5.  Copy and replace the files ```databases.cfg, taskdatadb.sqlite, users.cfg and querydefs.cfg.``` from ```data``` to ```slashdb```
 
@@ -187,9 +187,9 @@ Then open a browser and navigate to http://localhost:3000/
 
          docker run -d -p 8000:80 -v %cd%/slashdb:/etc/slashdb -v %cd%/slashdb-log:/var/log/slashdb slashdb/slashdb
 
-9.  In your browser, go to http://localhost:8000 to finish the initialization process. For more details see the [video](https://www.youtube.com/watch?v=XLqTX0XHXNI) and [SlashDB Documentation](https://docs.slashdb.com/user-guide/configuration.html)
+9.  In your browser, go to http://localhost:8000 to finish the initialization process. For more details see the [video](https://www.youtube.com/watch?v=XLqTX0XHXNI) and [SlashDB Documentation](https://docs.slashdb.com/user-guide/config/)
 
-10.  Browse task app data at http://localhost:8000/db/taskdatadb.html. You can find more on how to use SlashDB API at https://docs.slashdb.com/user-guide/using-slashdb.html
+10.  Browse task app data at http://localhost:8000/db/taskdatadb.html. You can find more on how to use SlashDB API at https://docs.slashdb.com/user-guide/using-slashdb/
 
 ![Server view](https://user-images.githubusercontent.com/807888/132827985-7813ebc9-9adf-4418-a369-fc1684995882.png 'Server view')
 
