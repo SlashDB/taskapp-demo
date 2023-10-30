@@ -153,7 +153,7 @@ Then open a browser and navigate to http://localhost:3000/
         REPOSITORY      TAG         IMAGE ID        CREATED             SIZE
         slashdb         latest      edfc56915a4c    About an hour ago   1.237 GB
 
-4.  Download and unzip the default SlashDB configuration files while in the local target directory:
+4.  Follow the instruction in [SlashDB documentation](https://docs.slashdb.com/user-guide/getting-slashdb/docker/) to download the latest configuration files. For example, for version `1.7.29` the commands would be:
 
         wget -c https://downloads.slashdb.com/versions/1.7.29/default-slashdb-configs_1.7.29.zip
         unzip default-slashdb-configs_1.7.29.zip
