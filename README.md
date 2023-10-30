@@ -155,8 +155,8 @@ Then open a browser and navigate to http://localhost:3000/
 
 4.  Download and unzip the default SlashDB configuration files while in the local target directory:
 
-        wget -c https://downloads.slashdb.com/latest/default-slashdb-configs.zip
-        unzip default-slashdb-configs.zip
+        wget -c https://downloads.slashdb.com/versions/1.7.29/default-slashdb-configs_1.7.29.zip
+        unzip default-slashdb-configs_1.7.29.zip
 
 5.  Copy and replace the files ```databases.cfg, taskdatadb.sqlite, users.cfg and querydefs.cfg.``` from ```data``` to ```slashdb```
 
