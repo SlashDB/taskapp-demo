@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from "react-router-dom";
 
 import { useSetUp, auth } from '@slashdb/react-slashdb';
 
@@ -13,14 +14,16 @@ export default function Login(props) {
     process.env.REACT_APP_DATABASE_PASSWORD
   );
 
+  let history = useHistory();
+
   function validateForm() {
     return username.length > 0;
   }
 
   const sdbClient = useSetUp();
   const handleSubmit = (event) => {
-    auth.login(username, password, sdbClient, () => {
-       props.history.push('/app');
+    auth.login(sdbClient, () => {
+      history.push('/app');
     });
     event.preventDefault();
   };
