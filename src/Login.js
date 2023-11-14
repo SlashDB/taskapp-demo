@@ -22,7 +22,14 @@ export default function Login(props) {
 
   const sdbClient = useSetUp();
   const handleSubmit = (event) => {
-    auth.login(sdbClient, () => {
+    auth.login(username, password, sdbClient, () => {
+      history.push('/app');
+    });
+    event.preventDefault();
+  };
+
+  const handleSSOLogin = (event) => {
+    auth.loginSSO(true, sdbClient, () => {
       history.push('/app');
     });
     event.preventDefault();
@@ -77,6 +84,19 @@ export default function Login(props) {
           Login
         </Button>
       </Form>
+      <br></br>
+      <br></br>
+      <div>
+        <Button
+          style={buttonWrapper}
+          size="lg"
+          type="submit"
+          disabled={!validateForm()}
+          onClick={handleSSOLogin}
+        >
+          Login with SSO
+        </Button>
+      </div>
     </div>
   );
 }

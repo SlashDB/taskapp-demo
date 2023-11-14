@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
+
 import Lists from './components/Lists';
 import NewListArea from './components/NewListArea';
 
@@ -29,6 +31,8 @@ export default function ListApp(props) {
     cursor: 'pointer',
   };
 
+  let history = useHistory();
+
   return (
     <div>
       <button
@@ -36,7 +40,7 @@ export default function ListApp(props) {
         size="lg"
         onClick={async () => {
           await auth.logout(() => {
-            props.history.push('/');
+            history.push('/');
           });
         }}
       >
