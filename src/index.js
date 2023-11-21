@@ -21,7 +21,7 @@ root.render(
         // apiKey: process.env.REACT_APP_USER_API_KEY,
         sso: {
           idpId: "keycloak",
-          redirectUri: "http://localhost:3000/success",
+          redirectUri: "http://localhost:3001/success",
           popUp: true
         }
       }}
