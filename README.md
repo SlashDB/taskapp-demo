@@ -116,7 +116,7 @@ to start dev server:
 
         npm start
 
-Then open a browser and navigate to http://localhost:3000/
+Then open a browser and navigate to http://localhost:3001/
 
 ### How to Run App in Local Environment with Connection to a Local SlashDB Server
 
