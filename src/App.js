@@ -1,14 +1,20 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import Header from './components/Header';
 import ListApp from './ListApp';
 import Login from './Login';
-import { Route, Switch } from 'react-router-dom';
+import Success from './Success';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useSetUp } from '@slashdb/react-slashdb';
 
-// function App() {
-const App = () =>
-{
+
+function App() {
 
   const host = "http://host.docker.internal:8000";	// set SlashDB host here
 	const username = "taskapp";	// set SlashDB username here
@@ -24,13 +30,23 @@ const App = () =>
   useSetUp('default', config);
   
   return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <ProtectedRoute exact path="/app" component={ListApp} />
-      </Switch>
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <ProtectedRoute path="/app">
+            <ListApp />
+          </ProtectedRoute>
+          <Route path="/success">
+            <Success />
+          </Route>
+        </Switch>
+          
+      </div>
+    </Router>
   );
 }
 

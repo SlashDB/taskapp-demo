@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from "react-router-dom";
 
 import { useSetUp, auth } from '@slashdb/react-slashdb';
 
@@ -13,6 +14,8 @@ export default function Login(props) {
     process.env.REACT_APP_DATABASE_PASSWORD
   );
 
+  let history = useHistory();
+
   function validateForm() {
     return username.length > 0;
   }
@@ -20,7 +23,14 @@ export default function Login(props) {
   const sdbClient = useSetUp();
   const handleSubmit = (event) => {
     auth.login(username, password, sdbClient, () => {
-       props.history.push('/app');
+      history.push('/app');
+    });
+    event.preventDefault();
+  };
+
+  const handleSSOLogin = (event) => {
+    auth.loginSSO(true, sdbClient, () => {
+      history.push('/app');
     });
     event.preventDefault();
   };
@@ -74,6 +84,19 @@ export default function Login(props) {
           Login
         </Button>
       </Form>
+      <br></br>
+      <br></br>
+      <div>
+        <Button
+          style={buttonWrapper}
+          size="lg"
+          type="submit"
+          disabled={!validateForm()}
+          onClick={handleSSOLogin}
+        >
+          Login with SSO
+        </Button>
+      </div>
     </div>
   );
 }

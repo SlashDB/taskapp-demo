@@ -6,7 +6,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { HashRouter } from 'react-router-dom';
 
 import { SlashDBProvider } from '@slashdb/react-slashdb';
 
@@ -14,8 +13,20 @@ import { SlashDBProvider } from '@slashdb/react-slashdb';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-  <HashRouter basename="/">
+    <SlashDBProvider
+      setUpOptions={{
+        host: process.env.REACT_APP_SLASHDB_SERVER_URL,
+        username: process.env.REACT_APP_DATABASE_USERNAME,
+        //password: process.env.REACT_APP_DATABASE_PASSWORD,
+        // apiKey: process.env.REACT_APP_USER_API_KEY,
+        sso: {
+          idpId: "keycloak",
+          redirectUri: "http://localhost:3000/success",
+          popUp: true
+        }
+      }}
+    >
     <App />
-  </HashRouter>,
+    </SlashDBProvider>,
   </React.StrictMode>
 );
