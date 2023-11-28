@@ -16,17 +16,15 @@ import { useSetUp } from '@slashdb/react-slashdb';
 
 function App() {
 
-  const host = "http://host.docker.internal:8000";	// set SlashDB host here
+  const host = process.env.REACT_APP_SLASHDB_SERVER_URL;	// set SlashDB host here
 	const username = "taskapp";	// set SlashDB username here
 	const apiKey = "wwv7nppvsj147rhdbi5mnm1zm8risb53";	// set SlashDB API key here
 	
   const config = {
-		host: host,
-		username: username,
-		apiKey: apiKey
+		host: host
+		// username: username,
+		// apiKey: apiKey
 	}
-
-  // useSetUp();
   useSetUp('default', config);
   
   return (
