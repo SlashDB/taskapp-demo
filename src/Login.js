@@ -28,12 +28,12 @@ export default function Login(props) {
     event.preventDefault();
   };
 
-  const handleSSOLogin = (event) => {
-    auth.loginSSO(true, sdbClient, () => {
-      history.push('/app');
-    });
-    event.preventDefault();
-  };
+  // const handleSSOLogin = (event) => {
+  //   auth.loginSSO(true, sdbClient, () => {
+  //     history.push('/app');
+  //   });
+  //   event.preventDefault();
+  // };
 
   const loginStyle = {
     paddingTop: '100px',
@@ -86,7 +86,7 @@ export default function Login(props) {
       </Form>
       <br></br>
       <br></br>
-      <div>
+      {/* <div>
         <Button
           style={buttonWrapper}
           size="lg"
@@ -96,7 +96,7 @@ export default function Login(props) {
         >
           Login with SSO
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

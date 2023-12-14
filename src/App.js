@@ -15,18 +15,6 @@ import { useSetUp } from '@slashdb/react-slashdb';
 
 
 function App() {
-
-  const host = process.env.REACT_APP_SLASHDB_SERVER_URL;	// set SlashDB host here
-	const username = "taskapp";	// set SlashDB username here
-	const apiKey = "wwv7nppvsj147rhdbi5mnm1zm8risb53";	// set SlashDB API key here
-	
-  const config = {
-		host: host
-		// username: username,
-		// apiKey: apiKey
-	}
-  useSetUp('default', config);
-  
   return (
     <Router>
       <div>
