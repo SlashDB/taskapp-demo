@@ -259,17 +259,17 @@ On successful login, the browser will redirect to the ```/app``` URL.  For more 
 
 ### Single Sign-On Functionality
 
-In this app code we added the feature of login with [Single Sign-On](https://en.wikipedia.org/wiki/Single_sign-on). To add this functionality to your frontend applications, both the SlashDB host and the identity provider must be properly configured in order to integrate SSO. You can follow this [instructions](https://docs.slashdb.com/user-guide/security/authentication/#sso-openid-connect) to configure SlashDB to handle SSO authentication with OpenID Connect. Another important thing, you have to add an aditional redirect URI to your application in the identity provider settings so it can be redirected after authentication to the success screen.
+This app includes code to allow for [Single Sign On (SSO)](https://en.wikipedia.org/wiki/Single_sign-on) with a third party provider. To use this functionality, both the SlashDB host and the identity provider must be properly configured to use an SSO provider. You can follow these [instructions](https://docs.slashdb.com/user-guide/security/authentication/#sso-openid-connect) to configure SlashDB to handle SSO authentication using OpenID Connect. *You must provide a redirect URI to your application in the identity provider settings so that it can be redirected after authentication to the success screen, e.g:*
 
     http://localhost:3001/success
 
-This URI is also configured in the `.env` file, you can change the `localhost` value to your host. Finally, in order to enable this feature for this demo, you can uncomment the code sections that are commented in the following files and modules:
+This URI is also configured in the `.env` file; you can change the `localhost` value to your host. Finally, to enable this feature for the demo, you must uncomment the relevant code sections that are commented out in the following files and modules:
 
 - `.env`
 - `src/Login.js`
 - `src/index.js`
 
-A button will be added to the login interface, and by clicking this button a pop-up window will open with the authentication interface of the identity provider configured (Okta, Azure, Social).
+Once enabled, a button will be added to the login interface. Clicking this button will open a pop-up window with the authentication interface of the configured identity provider (e.g. Okta, Azure, Social).
 
 ### Using Hooks to Interact with Database via SlashDB API
 Once we have logged in, the file ```ListApp.js``` will be loaded. This is where we actually access the database and retrieve some information.  First, we will import the required functions:
