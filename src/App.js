@@ -2,8 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import Header from './components/Header';
@@ -14,7 +13,11 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { useSetUp } from '@slashdb/react-slashdb';
 
 
+
 function App() {
+  
+  useSetUp();
+  
   return (
     <Router>
       <div>

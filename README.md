@@ -24,6 +24,8 @@ This repository contains a proof-of-concept task list app which demonstrates how
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Auth](#authentication-functionality)
 
+&nbsp;&nbsp;&nbsp;&nbsp;[SSO Login](#single-sign-on-functionality)
+
 &nbsp;&nbsp;&nbsp;&nbsp;[Hooks for Data Access](#using-hooks-to-interact-with-database-via-slashdb-api)
 
 [References](#references)
@@ -209,59 +211,87 @@ We use the React component ```SlashDBProvider``` from the npm package react-slas
 
 Import:
 
-        import { SlashDBProvider } from '@slashdb/react-slashdb';
+```jsx
+import { SlashDBProvider } from '@slashdb/react-slashdb';
+```
 
 Call component and wrap:
 
-        <SlashDBProvider
+```jsx
+    <SlashDBProvider
         baseUrl={process.env.REACT_APP_SLASHDB_SERVER_URL}
         setUpOptions={{
-        username: process.env.REACT_APP_DATABASE_USERNAME,
-        apiKey: process.env.REACT_APP_USER_API_KEY,
+            username: process.env.REACT_APP_DATABASE_USERNAME,
+            apiKey: process.env.REACT_APP_USER_API_KEY,
         }}
-        >
-        <App />
-        </SlashDBProvider> 
+    >
+    <App />
+    </SlashDBProvider> 
+```
 
 Here we have used a ```.env``` file (a feaure of NodeJS) to store the SlashDB connection parameters. 
 
 Now we will call ```useSetUp``` in the ```App.js``` file to ensure the custom hooks can access the parameters provided in the previous step.
 
-    import { useSetUp } from '@slashdb/react-slashdb';
-    ...
-    useSetUp();
+```jsx
+import { useSetUp } from '@slashdb/react-slashdb';
+...
+useSetUp();
+```
 
 ### Authentication Functionality
 
 Let's examine the ```Login.js``` file. We provide a username and password to the ```auth.login``` method:
 
-    import { useSetUp, auth } from '@slashdb/react-slashdb';
-    ...
-    sdbClient = useSetUp();
-    const handleSubmit = (event) => {
-            auth.login(username, password, sdbClient, () => {
-            props.history.push('/app');
+```jsx
+import { useSetUp, auth } from '@slashdb/react-slashdb';
+...
+sdbClient = useSetUp();
+const handleSubmit = (event) => {
+    auth.login(username, password, sdbClient, () => {
+        props.history.push('/app');
     });
-            event.preventDefault();
-    };
+    event.preventDefault();
+};
+```
+
 On successful login, the browser will redirect to the ```/app``` URL.  For more information on the ```auth``` class, see the [SlashDB React SDK](https://github.com/SlashDB/react-slashdb)
+
+### Single Sign-On Functionality
+
+In this app code we added the feature of login with [Single Sign-On](https://en.wikipedia.org/wiki/Single_sign-on). To add this functionality to your frontend applications, both the SlashDB host and the identity provider must be properly configured in order to integrate SSO. You can follow this [instructions](https://docs.slashdb.com/user-guide/security/authentication/#sso-openid-connect) to configure SlashDB to handle SSO authentication with OpenID Connect. Another important thing, you have to add an aditional redirect URI to your application in the identity provider settings so it can be redirected after authentication to the success screen.
+
+    http://localhost:3001/success
+
+This URI is also configured in the `.env` file, you can change the `localhost` value to your host. Finally, in order to enable this feature for this demo, you can uncomment the code sections that are commented in the following files and modules:
+
+- `.env`
+- `src/Login.js`
+- `src/index.js`
+
+A button will be added to the login interface, and by clicking this button a pop-up window will open with the authentication interface of the identity provider configured (Okta, Azure, Social).
 
 ### Using Hooks to Interact with Database via SlashDB API
 Once we have logged in, the file ```ListApp.js``` will be loaded. This is where we actually access the database and retrieve some information.  First, we will import the required functions:
 
-    import { useDataDiscovery, auth } from '@slashdb/react-slashdb';
-    
+```jsx
+import { useDataDiscovery, auth } from '@slashdb/react-slashdb';
+```
+
 Then we will call the imported hook ```useDataDiscovery``` to retrieve the data in table ```TaskList``` and obtain some function references for interacting with the table:
 
+```jsx
     const [lists, getList, postList, putList, deleteList] = useDataDiscovery(
-    process.env.REACT_APP_DATABASE_NAME,
-    'TaskList'
+        process.env.REACT_APP_DATABASE_NAME,
+        'TaskList'
     );
+```
 
 ```lists``` is an array that will hold all information in the ```TaskList``` table .   Constants ```getList```, ```postList```, ```putList```, and ```deleteList``` are function references that we can call with some parameters to make GET, POST, PUT and DELETE calls to the SlashDB API to interact with the database.  We can pass these constants down to the child components.
 
 The file ```Lists.js``` is a simple container for our ```List``` components; the constants created above are passed down in this file to each ```List``` component.  In the file ```List.js``` we have the following code:
 
+```jsx
       import { DataDiscoveryFilter, SQLPassThruFilter, eq } from '@slashdb/js-slashdb';
       .
       .
@@ -282,6 +312,7 @@ The file ```Lists.js``` is a simple container for our ```List``` components; the
         'percent-complete',
         queryParams
       );
+```
 
 Let’s step through what’s happening here:
 - we deconstruct props from the parent component
