@@ -16,8 +16,6 @@ root.render(
     <SlashDBProvider
       setUpOptions={{
         host: process.env.REACT_APP_SLASHDB_SERVER_URL,
-        username: process.env.REACT_APP_DATABASE_USERNAME,
-        password: process.env.REACT_APP_DATABASE_PASSWORD,
         apiKey: process.env.REACT_APP_USER_API_KEY
         // sso: {
         //   idpId: process.env.REACT_APP_SLASHDB_IDP,
