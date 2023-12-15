@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import { auth }  from '@slashdb/react-slashdb';
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
 
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  
+  useEffect(() => {
+    auth.clientIsAuthenticated().then(isAuthenticated => {
+      setIsAuthenticated(isAuthenticated);
+    });
+  }, []);
+  
   return (
     <Route
       {...rest}
       render={(props) => {
-        async function checkLogin() {
-          if (! (await auth.clientIsAuthenticated()) ) {
-            props.history.push('/');
-            return false;
-          }
-          return true;
-        }
-        checkLogin();
-        if (auth.clientIsAuthenticated()) {
+        if (isAuthenticated) {
           return <Component {...props} />;
         } else {
           return (
@@ -34,4 +34,5 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
       }}
     />
   );
-};
+
+}
