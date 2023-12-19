@@ -271,6 +271,10 @@ This URI is also configured in the `.env` file; you can change the `localhost` v
 
 Once enabled, a button will be added to the login interface. Clicking this button will open a pop-up window with the authentication interface of the configured identity provider (e.g. Okta, Azure, Social).
 
+![Login Screen SSO](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Login_Screen_SSO.jpg 'Login Screen SSO')
+
+![Okta Login](https://github.com/SlashDB/taskapp-demo/blob/main/public/images/Okta_Login.jpg 'Okta Login')
+
 ### Using Hooks to Interact with Database via SlashDB API
 Once we have logged in, the file ```ListApp.js``` will be loaded. This is where we actually access the database and retrieve some information.  First, we will import the required functions:
 
